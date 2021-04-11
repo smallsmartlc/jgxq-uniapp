@@ -9,8 +9,8 @@
 					<span>{{news.comments>999?"999+":news.comments}}</span>
 				</view>
 			</view>
-			<view class="img-box" v-if="news.comments!=null" style="color:#666660">
-				<u-image style="width: 170rpx;height: 100%;"
+			<view class="img-box" style="color:#666660">
+				<u-image width="170" height="100%"
 					:src="$utils.url2img(news.cover)"
 					mode="aspectFill"></u-image>
 			</view>
@@ -51,7 +51,7 @@
 	
 }
 .title-box{
-	margin-right: 24rpx;
+	margin-right: 16rpx;
 	font-size: 14px;
 	display:flex;
 	flex-direction:column;
