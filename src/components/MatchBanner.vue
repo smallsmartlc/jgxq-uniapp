@@ -20,7 +20,11 @@
 					<view style="text-align: left;">{{match.visitingScore}}</view>
 				</view>
 			</view>
-			<view class="status" :style="color">{{matchStatus}}</view>
+			<view v-if="matchStatus == '进行中' && match.link" class="live">
+				<u-icon name="play-right-fill"></u-icon>
+				<text>视频直播中</text>
+			</view>
+			<view v-else class="status" :style="color">{{matchStatus}}</view>
 		</view>
 		<view class="team-box">
 			<view class="team-info">
@@ -89,10 +93,21 @@
 	.score{
 		display: flex;
 		justify-content: center;
+		font-size: 24px;
+		margin: 4px 0;
 	}
 	.score view{
 		width: 48px;
-		font-size: 24px;
+	}
+	.live{
+		color: #fff;
+		background-color: #fc0;
+		font-size: 8px;
+		text-align: center;
+		width: fit-content;
+		padding: 2px 4px;
+		border-radius: 2px;
+		margin: 0px auto;
 	}
 	.status{
 		font-size: 10px;

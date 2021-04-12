@@ -10,7 +10,8 @@
 		{
 			"path": "pages/match/match",
 			"style": {
-				"navigationBarTitleText": "比赛"
+				"navigationBarTitleText": "比赛",
+				"enablePullDownRefresh":true
 			}
 		},
 		{
@@ -30,12 +31,31 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}
-        ,{
+		},
+		{
             "path" : "pages/newsDetail/newsDetail",
             "style" :                                                                                    
             {
                 "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/matchDetail/matchDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/teamSet/teamSet",
+            "style" :                                                                                    
+            {
+				// "navigationStyle": "custom",
+				// "navigationBarTextStyle": "white",
+                "navigationBarTitleText": "设置主队"
             }
             
         }

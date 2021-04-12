@@ -22,7 +22,11 @@ export function editor2Text(str){
 }
 export function getMatchStatus(time){
 	var diff = moment().diff(moment(time),'minute');
-	return diff>120?'已结束':diff > 0?'进行中':'未开始';
+	if(diff>=0){
+		return diff>120?'已结束':'进行中';
+	}else{
+		return '未开始';
+	}
 }
 export function getDayStr(time){
 	return moment(time).calendar(null,{

@@ -22,8 +22,8 @@
 						pagePath: "/pages/match/match"
 					},
 					{
-						iconPath: "https://smallsmart.top/static/img/jgxq.9a2351c.png",
-						selectedIconPath: "https://smallsmart.top/static/img/jgxq.9a2351c.png",
+						iconPath: "https://smallsmart.top/source/images/jgxq/icon/football.png",
+						selectedIconPath: "https://smallsmart.top/source/images/jgxq/icon/colorball.png",
 						text: '主队',
 						midButton: true,
 						customIcon: false,

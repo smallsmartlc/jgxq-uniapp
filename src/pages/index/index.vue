@@ -4,10 +4,14 @@
 		<view class="match-banner">
 			<block v-if="lastMatches.length > 0" v-for="(item,index) in lastMatches">
 				<block v-if="lastMatches.length > 1">
-					<MatchBox style="height:100%" :match="item"></MatchBox>
-					<view class="divider" v-if="index%2==0"></view>
+					<navigator :url="`../matchDetail/matchDetail?id=${item.id}`">
+						<MatchBox style="height:100%" :match="item"></MatchBox>
+					</navigator>
+						<view class="divider" v-if="index%2==0"></view>
 				</block>
-				<MatchBanner v-else :match="item"></MatchBanner>
+				<navigator v-else :url="`../matchDetail/matchDetail?id=${item.id}`">
+					<MatchBanner :match="item"></MatchBanner>
+				</navigator>
 			</block>
 		</view>
 		<block v-for="item in topNews" :key="item.id">
@@ -103,7 +107,7 @@
 			loadMatch(){
 				pageMatches({
 					pageNum:1,
-					pageSize:2,
+					pageSize:1,
 					start:this.$moment().subtract(2,'days').format("YYYY/MM/DD HH:mm:ss")
 					}).then((res)=>{
 					if (res.code == 200) {
