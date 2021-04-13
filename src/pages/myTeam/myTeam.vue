@@ -21,14 +21,11 @@
 			}
 		},
 		onLoad() {
-			// 加载导航栏参数
-			uni.getStorage({
-				key : "tabbar",
-				success: (res)=>{
-					this.tabbar = res.data;
-				}
-			});
 			this.loadTeam();
+		},
+		onShow() {
+			// 加载导航栏参数
+			this.tabbar = getApp().globalData.tabbar;
 		},
 		methods: {
 			loadTeam() {

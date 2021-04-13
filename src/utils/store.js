@@ -17,7 +17,6 @@ export function setHomeTeam(team){
 		uni.setStorageSync("userInfo",u);
 	}
 	// 导航栏
-	let t = uni.getStorageSync("tabbar");
 	let img,selectImg;
 	if(team){
 		img = $utils.url2img(team.logo);
@@ -26,7 +25,6 @@ export function setHomeTeam(team){
 		img = "https://smallsmart.top/source/images/jgxq/icon/football.png";
 		selectImg = "https://smallsmart.top/source/images/jgxq/icon/colorball.png";
 	}
-	t[2].iconPath = img;
-	t[2].selectedIconPath = selectImg;
-	uni.setStorageSync("tabbar",t);
+	getApp().globalData.tabbar[2].iconPath = img;
+	getApp().globalData.tabbar[2].selectedIconPath = selectImg;
 }
