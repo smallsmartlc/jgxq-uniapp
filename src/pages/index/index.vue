@@ -61,6 +61,9 @@
 			}
 		},
 		onLoad() {
+			this.refresh();
+		},
+		onShow() {
 			// 加载导航栏参数
 			uni.getStorage({
 				key: "tabbar",
@@ -68,7 +71,6 @@
 					this.tabbar = res.data;
 				}
 			});
-			this.refresh();
 		},
 		onReachBottom() {
 			this.load();

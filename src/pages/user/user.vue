@@ -23,13 +23,15 @@
 			})
 		},
 		methods: {
-			
 			login(){
 				userLogin({
 					email :"small-smart@qq.com",
 					password : "abc123"
 				}).then((res)=>{
-					console.log(res);
+					if(res.code == 200){
+						var userInfo = res.data;
+						uni.setStorageSync("userInfo",userInfo);
+					}
 				})
 			}
 		}
