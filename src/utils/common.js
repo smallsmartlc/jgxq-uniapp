@@ -15,6 +15,18 @@ export function url2img(str){
         return defaultimg; 
     } 
 }
+export function tabbarImg(str,select){
+	if(str){return imgUrl + str;}
+	else{
+		let defaultimg;
+		if(select){
+			defaultimg = "https://smallsmart.top/source/images/jgxq/icon/colorball.png";
+		}else{
+			defaultimg = "https://smallsmart.top/source/images/jgxq/icon/football.png"
+		}
+	    return defaultimg; 
+	}
+}
 export function editor2Text(str){
     if(str){
         return str.replace(/<[^>]+>|&[^>]+;/g,"").replace(/<img.*?(?:>|\/>)/gi,"[图片]").trim();

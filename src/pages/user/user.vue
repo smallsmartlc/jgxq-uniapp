@@ -7,6 +7,7 @@
 
 <script>
 	import {userLogin} from '@/api/login'
+	import {setUserInfo} from '@/utils/store.js'
 	export default {
 		data() {
 			return {
@@ -27,7 +28,7 @@
 				}).then((res)=>{
 					if(res.code == 200){
 						var userInfo = res.data;
-						uni.setStorageSync("userInfo",userInfo);
+						setUserInfo(userInfo);
 					}
 				})
 			}

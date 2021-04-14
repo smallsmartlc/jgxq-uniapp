@@ -1,30 +1,33 @@
 import * as $utils from '@/utils/common'
 
 export function getUserInfo(){
-	return uni.getStorageSync("userInfo");
+	
 }
 export function setUserInfo(user){
-	uni.setStorageSync("userInfo",user);
+	getApp().globalData.userInfo = user;
+	if(user.homeTeam){
+		setTabbar(user.homeTeam.logo);
+	}else{
+		setTabbar(null);
+	}
 }
 export function getHomeTeam(){
-	return uni.getStorageSync("userInfo").homeTeam;
+	
 }
 export function setHomeTeam(team){
 	// userInfo
-	let u = uni.getStorageSync("userInfo");
-	if(u){
-		u.homeTeam = team;
-		uni.setStorageSync("userInfo",u);
+	let u = getApp().globalData.userInfo;
+	if(getApp().globalData.userInfo){
+		getApp().globalData.userInfo.homeTeam = team;
+		if(team){
+			setTabbar(team.logo);
+		}else{
+			setTabbar(null);
+		}
 	}
-	// 导航栏
-	let img,selectImg;
-	if(team){
-		img = $utils.url2img(team.logo);
-		selectImg = img;
-	}else {
-		img = "https://smallsmart.top/source/images/jgxq/icon/football.png";
-		selectImg = "https://smallsmart.top/source/images/jgxq/icon/colorball.png";
-	}
-	getApp().globalData.tabbar[2].iconPath = img;
-	getApp().globalData.tabbar[2].selectedIconPath = selectImg;
+}
+export function setTabbar(img){
+	// 设置导航栏
+	getApp().globalData.tabbar[2].iconPath = $utils.tabbarImg(img);
+	getApp().globalData.tabbar[2].selectedIconPath = $utils.tabbarImg(img,true);
 }

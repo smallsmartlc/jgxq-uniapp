@@ -1,5 +1,9 @@
 <script>
-	import '.env.js'
+	import '.env.js';
+	import {
+		setTabbar,setUserInfo
+	} from '@/utils/store.js'
+	import {checkUser} from '@/api/login'
 	export default {
 		globalData: {
 			...process.uniEnv,
@@ -40,23 +44,29 @@
 					pagePath: "/pages/user/user"
 				},
 			],
+			userInfo: null,
 		},
 		onLaunch: function() {
 			// app启动时加载
 			// 导航栏
-			// let tabbar = ;
-			let user = uni.getStorageSync("userInfo");
-			if (user && user.homeTeam) {
-				let img = this.$utils.url2img(user.homeTeam.logo)
-				getApp().globalData.tabbar[2].iconPath = img;
-				getApp().globalData.tabbar[2].selectedIconPath = img;
-			}
+			this.checkUser();
 		},
 		onShow: function() {
 			console.log('App Show')
 		},
 		onHide: function() {
 			console.log('App Hide')
+		},
+		methods:{
+			checkUser() {
+				checkUser().then((res) => {
+					if (res.code == 200) {
+						if(res.data){
+							setUserInfo(res.data);
+						}
+					}
+				})
+			},
 		}
 	}
 </script>

@@ -38,9 +38,11 @@ var http = (option) => {
 						}
 						if (error.status === 401) {
 							// 警告弹窗 请先登陆再操作
+							getApp().globalData.userInfo = null;
 							console.log("跳转404界面");
 						}
 						if (error.status === 403) {
+							
 							// Message({
 							// 	message: '没有作者权限,去申请成为创作者吧!!!',
 							// 	type: 'warning'
