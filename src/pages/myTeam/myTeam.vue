@@ -1,11 +1,12 @@
 <template>
 	<view>
 		<view v-if="team">
-			<u-tabs-swiper ref="uTabs" is-scroll :list="tabs" :current="current" @change="change"></u-tabs-swiper>
-			<swiper :current="current" @transition="transition" @animationfinish="animationfinish">
+			<u-tabs-swiper ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
+			<swiper style="height: 1000rpx;" :current="current" 
+				@animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
-					<TeamDynamic>
-						
+					<TeamDynamic :team="team">
+
 					</TeamDynamic>
 				</swiper-item>
 				<swiper-item class="swiper-item">
@@ -38,7 +39,7 @@
 <script>
 	import TeamDynamic from './TeamDynamic.vue'
 	export default {
-		components:{
+		components: {
 			TeamDynamic,
 		},
 		data() {
@@ -58,12 +59,11 @@
 				// swiperCurrent : 0,
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		onShow() {
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
-			if(getApp().globalData.userInfo){
+			if (getApp().globalData.userInfo) {
 				this.team = getApp().globalData.userInfo.homeTeam;
 			}
 		},
@@ -73,10 +73,6 @@
 					url: "../teamSet/teamSet"
 				})
 			},
-			transition(e) {
-				let dx = e.detail.dx;
-				this.$refs.uTabs.setDx(dx);
-			},
 			// 由于swiper的内部机制问题，快速切换swiper不会触发dx的连续变化，需要在结束时重置状态
 			// swiper滑动结束，分别设置tabs和swiper的状态
 			animationfinish(e) {
@@ -84,10 +80,15 @@
 				this.$refs.uTabs.setFinishCurrent(current);
 				this.current = current;
 			},
+			change(index) {
+				this.current = index;
+			}
 		}
 	}
 </script>
 
-<style>
-
+<style scoped>
+	.swiper-item {
+		height: 100%;
+	}
 </style>

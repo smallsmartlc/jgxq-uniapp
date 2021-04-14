@@ -13,3 +13,11 @@ export const pageNews = (cur,pageSize,params) =>request({
     url: `/news/page/${cur}/${pageSize}`,
     data:params // keyword,topNews
 })
+export const pageNewsByTag = (cur,pageSize,objectId,type) =>request({
+    method: 'get',
+    url: `/news/page/tag/${cur}/${pageSize}`,
+    data:{
+        objectId,
+        type
+    }
+})

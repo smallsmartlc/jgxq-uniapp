@@ -104,14 +104,14 @@
 			loadMatch(){
 				pageMatches({
 					pageNum:1,
-					pageSize:1,
+					pageSize:2,
 					start:this.$moment().subtract(2,'days').format("YYYY/MM/DD HH:mm:ss")
 					}).then((res)=>{
 					if (res.code == 200) {
 						var temp = res.data.records;
 						this.lastMatches = temp;
 					}
-				})
+				});
 			},
 			refresh(){
 				this.loadTop();
