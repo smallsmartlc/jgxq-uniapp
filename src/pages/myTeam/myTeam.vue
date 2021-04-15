@@ -1,28 +1,20 @@
 <template>
-	<view>
+	<view style="background-color: #FbFbFb;">
 		<view v-if="team">
 			<u-tabs-swiper ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
 			<swiper style="height: 1000rpx;" :current="current" 
 				@animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
-					<TeamDynamic :team="team">
-
-					</TeamDynamic>
+					<TeamDynamic :team="team"></TeamDynamic>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<scroll-view scroll-y style="height: 800rpx;width: 100%;" @scrolltolower="onreachBottom">
-						试两试
-					</scroll-view>
+					<TeamMatches :team="team"></TeamMatches>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<scroll-view scroll-y style="height: 800rpx;width: 100%;" @scrolltolower="onreachBottom">
-						试三试
-					</scroll-view>
+					<TeamPlayer :team="team"></TeamPlayer>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<scroll-view scroll-y style="height: 800rpx;width: 100%;" @scrolltolower="onreachBottom">
-						试试就逝世
-					</scroll-view>
+					<TeamInfo :team="team"></TeamInfo>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -38,9 +30,15 @@
 
 <script>
 	import TeamDynamic from './TeamDynamic.vue'
+	import TeamMatches from './TeamMatches.vue'
+	import TeamPlayer from './TeamPlayer.vue'
+	import TeamInfo from './TeamInfo.vue'
 	export default {
 		components: {
 			TeamDynamic,
+			TeamMatches,
+			TeamPlayer,
+			TeamInfo
 		},
 		data() {
 			return {

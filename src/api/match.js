@@ -3,7 +3,7 @@ import request from '@/utils/request'
 export const pageMatches = (params) => request({
     method: 'get',
     url: `/match/page`,
-    data:params //pageNum,pageSize,start,teamId
+    data:params //pageNum,pageSize,start,teamId,past
 })
 export const homeMatches = (size,teamId) => request({
     method: 'get',

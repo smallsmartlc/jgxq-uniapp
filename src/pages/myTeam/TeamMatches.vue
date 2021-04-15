@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="onreachBottom" @scrolltoupper="onreachTop">
 		<u-loadmore v-show="!downLoading" :status="upLoadingStatus" :load-text="upLoadText" />
 		<view v-for="list in matchGroup()" :key="list.startTime">
 			<view class="title">{{list.startTime}}</view>
@@ -10,22 +10,23 @@
 			</view>
 		</view>
 		<u-loadmore :status="downLoadingStatus" :load-text="downLoadText" />
-		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
-	</view>
+	</scroll-view>
 </template>
 
 <script>
-	import MatchItem from '@/components/MatchItem.vue'
 	import {
 		pageMatches
 	} from '@/api/match.js'
+	import MatchItem from '@/components/MatchItem.vue'
 	export default {
+		props: {
+			team: Object,
+		},
 		components: {
 			MatchItem
 		},
 		data() {
 			return {
-				tabbar: null,
 				pageSize: 10,
 				matchDownList: [], // 下拉加载比赛列表
 				downCur: 0,
@@ -35,34 +36,29 @@
 				upCur: 0,
 				upTotal: 1,
 				upLoading: false,
-				upLoadText : {
+				upLoadText: {
 					loadmore: '下拉查看更多历史比赛',
 					loading: '经管雄起正在加载',
 					nomore: '没有更多了'
 				},
-				downLoadText : {
+				downLoadText: {
 					loadmore: '加载更多',
 					loading: '经管雄起正在加载',
 					nomore: '没有更多了'
 				},
 			}
 		},
-		onLoad() {
+		mounted() {
 			this.loadDown();
 			this.loadUp();
-		},
-		onShow() {
-			// 加载导航栏参数
-			this.tabbar = getApp().globalData.tabbar;
-		},
-		onReachBottom() {
-			this.loadDown();
-		},
-		onPullDownRefresh() {
-			this.loadUp();
-			uni.stopPullDownRefresh();
 		},
 		methods: {
+			onreachBottom(){
+				this.loadDown();
+			},
+			onreachTop(){
+				this.loadUp();
+			},
 			loadUp() {
 				if (this.upDisabled) return;
 				this.upLoading = true;
@@ -70,7 +66,8 @@
 				pageMatches({
 						pageNum: this.upCur,
 						pageSize: this.pageSize,
-						past: true
+						past: true,
+						teamId: this.team.id,
 					})
 					.then((res) => {
 						if (res.code == 200) {
@@ -88,6 +85,7 @@
 				this.downLoading = true
 				this.downCur++;
 				pageMatches({
+						teamId: this.team.id,
 						pageNum: this.downCur,
 						pageSize: this.pageSize
 					})
@@ -110,8 +108,8 @@
 			downDisabled() {
 				return this.downLoading || this.downNoMore;
 			},
-			downLoadingStatus(){
-				return this.downLoading?'loading':this.downNoMore?'nomore':'loadmore'
+			downLoadingStatus() {
+				return this.downLoading ? 'loading' : this.downNoMore ? 'nomore' : 'loadmore'
 			},
 			upNoMore() {
 				return this.matchUpList.length >= this.upTotal;
@@ -119,8 +117,8 @@
 			upDisabled() {
 				return this.upLoading || this.upNoMore;
 			},
-			upLoadingStatus(){
-				return this.upLoading?'loading':this.upNoMore?'nomore':'loadmore'
+			upLoadingStatus() {
+				return this.upLoading ? 'loading' : this.upNoMore ? 'nomore' : 'loadmore'
 			},
 			matchGroup() {
 				return () => {
@@ -148,12 +146,12 @@
 					return newArr;
 				}
 			},
-		}
+		},
 	}
 </script>
 
 <style scoped>
-	.title{
+	.title {
 		background-color: #eee;
 		text-align: center;
 		font-size: 10px;
