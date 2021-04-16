@@ -50,3 +50,18 @@ export function getDayStr(time){
 		sameElse : 'MM-DD'
 	});
 }
+
+export function fromNowStr(time){
+	var now = moment();
+	var temp =  moment(time);
+	var diff = now.diff(temp,'day');
+	if(now.year() == temp.year()){
+		if((now-temp) > (3*24*3600*1000)){
+			return temp.format('MM-DD HH:mm');
+		}else{
+			return temp.fromNow();
+		}
+	}else{
+		return temp.format('YYYY-MM-DD HH:mm');
+	}
+}

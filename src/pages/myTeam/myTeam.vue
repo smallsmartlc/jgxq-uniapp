@@ -1,7 +1,7 @@
 <template>
 	<view style="background-color: #FbFbFb;">
 		<view v-if="team">
-			<u-tabs-swiper ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
+			<u-tabs-swiper active-color="#fc0" ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
 			<swiper style="height: 1000rpx;" :current="current" 
 				@animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
