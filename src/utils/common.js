@@ -65,3 +65,8 @@ export function fromNowStr(time){
 		return temp.format('YYYY-MM-DD HH:mm');
 	}
 }
+export function iframe2Text(text){
+	if(text){
+		return text.replace(/<iframe src="\S+"[\s\S]+<\/iframe>/g,"<view style='font-weight: bold; text-align: center;margin: 20rpx;'>小程序不支持b站视频播放,请去网页端观看</view>")
+	}else return "";
+}

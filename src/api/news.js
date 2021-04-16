@@ -21,3 +21,12 @@ export const pageNewsByTag = (cur,pageSize,objectId,type) =>request({
         type
     }
 })
+export const pageNewsByTags = (cur,pageSize,data) =>request({
+    method: 'post',
+    url: `/news/page/tags/${cur}/${pageSize}`,
+    data
+})
+export const pageComment = (objId,cur,pageSize) => request({
+    method : 'get',
+    url: `/comment/0/${objId}/${cur}/${pageSize}`,
+})

@@ -36,7 +36,7 @@
             "path" : "pages/newsDetail/newsDetail",
             "style" :                                                                                    
             {
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
             }
             
         },
@@ -78,12 +78,30 @@
             }
             
         }
+        ,{
+            "path" : "pages/teamDetail/teamDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/reply/reply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "回复",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "经管雄起",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#fff"
 	},
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
