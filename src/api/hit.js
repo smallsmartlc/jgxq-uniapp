@@ -6,6 +6,5 @@ export const thumbById = (type,id)=>request({
 });
 export const collectById = (type,id,collected)=>request({
     method: 'post',
-    url: `/collect/${type}/${id}`,
-    params : {collected}
+    url: `/collect/${type}/${id}?collected=${collected}`,
 })

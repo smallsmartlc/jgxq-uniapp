@@ -92,7 +92,18 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "回复",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/addComment/addComment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
             }
             
         }
