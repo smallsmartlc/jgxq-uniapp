@@ -24,7 +24,7 @@
 		},
 		methods: {
 			doComment(){
-				if(this.content.length < 1){
+				if(!this.content){
 					return;
 				}
 				this.commentReq.content = this.content;
