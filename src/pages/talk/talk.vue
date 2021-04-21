@@ -19,7 +19,7 @@
 		data() {
 			return {
 				tabbar: null,
-				fileList : [];
+				fileList : [],
 			}
 		},
 		onLoad() {
