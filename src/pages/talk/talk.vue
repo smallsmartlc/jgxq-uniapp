@@ -5,7 +5,7 @@
 				<editor id="editor" class="ql-container" placeholder="说点什么吧..."></editor>
 			</view>
 			<view class="button-box">
-				<u-upload :action="action" :file-list="fileList" custom-btn>
+				<u-upload :file-list="fileList" custom-btn>
 					<view class="button" slot="addBtn">
 						<u-icon name="photo" size="48"></u-icon>
 					</view>
@@ -17,11 +17,16 @@
 </template>
 
 <script>
+	import { BaseUrl } from '@/constants/index'
 	export default {
 		data() {
 			return {
 				tabbar: null,
 				fileList: [],
+				action : BaseUrl + '/file/img/upload/talkimg',
+				header: {
+					'cookie': uni.getStorageSync("authCookie") || ''
+				},
 			}
 		},
 		onLoad() {},
