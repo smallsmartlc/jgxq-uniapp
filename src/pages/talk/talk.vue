@@ -5,7 +5,7 @@
 				<editor id="editor" class="ql-container" placeholder="说点什么吧..."></editor>
 			</view>
 			<view class="button-box">
-				<u-upload :file-list="fileList" custom-btn>
+				<u-upload :show-upload-list="false" :before-upload="beforeUpload" :file-list="fileList" custom-btn>
 					<view class="button" slot="addBtn">
 						<u-icon name="photo" size="48"></u-icon>
 					</view>
@@ -35,7 +35,11 @@
 			this.tabbar = getApp().globalData.tabbar;
 		},
 		methods: {
-
+			beforeUpload(index, list){
+				// 在这里自定义上传逻辑
+				console.log(list[index])
+				return false;
+			}
 		}
 	}
 </script>
@@ -52,8 +56,8 @@
 
 	.button-box {
 		display: flex;
-		height: 80rpx;
 		border-bottom: 1px solid #e7e7e7;
 		align-items: center;
+		padding: 10rpx 20rpx;
 	}
 </style>
