@@ -5,13 +5,15 @@
 				<editor id="editor" class="ql-container" placeholder="说点什么吧..."></editor>
 			</view>
 			<view class="button-box">
-				<u-upload :show-upload-list="false" :before-upload="beforeUpload" :file-list="fileList" custom-btn>
+				<u-upload ref="uUpload" :before-upload="beforeUpload" 
+				:before-remove = "beforeRemove" custom-btn>
 					<view class="button" slot="addBtn">
 						<u-icon name="photo" size="48"></u-icon>
 					</view>
 				</u-upload>
 			</view>
 		</view>
+		<u-toast ref="uToast" />
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
 </template>
@@ -22,11 +24,8 @@
 		data() {
 			return {
 				tabbar: null,
-				fileList: [],
+				imgList : [],
 				action : BaseUrl + '/file/img/upload/talkimg',
-				header: {
-					'cookie': uni.getStorageSync("authCookie") || ''
-				},
 			}
 		},
 		onLoad() {},
@@ -35,9 +34,35 @@
 			this.tabbar = getApp().globalData.tabbar;
 		},
 		methods: {
+			beforeRemove(index,list){
+				this.imgList.splice(index,1);
+			},
 			beforeUpload(index, list){
 				// 在这里自定义上传逻辑
-				console.log(list[index])
+				uni.uploadFile({
+					url : BaseUrl + '/file/img/upload/talkimg',
+					filePath:list[index].url,
+					name: 'file',
+					success: (res) => {
+						let temp = JSON.parse(res.data)
+						console.log(temp);
+						if(temp.code == '200'){
+							this.imgList.push(temp.data);
+						}else{
+							this.$refs.uToast.show({
+								type: "error",
+								message: '图片上传失败',
+							})
+						}
+					},
+					fail: (err) => {
+						this.$refs.uToast.show({
+							type: "error",
+							message: '图片上传失败',
+						})
+					}
+					
+				})
 				return false;
 			}
 		}
