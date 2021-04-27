@@ -25,7 +25,7 @@
 
 <script>
 	import {
-		BaseUrl
+		BaseUrl,imgUrl
 	} from '@/constants/index'
 	import {
 		pageTalk,
@@ -81,6 +81,21 @@
 				this.submiting = true;
 				let text = "";
 				// todo 获取编辑器中的html内容
+				uni.createSelectorQuery().select('#editor').context((res) => {
+					res.context.getContents({
+						success(res){
+							text = res.html;
+							this.imgList.forEach((img)=>{
+								// todo 添加图片
+								debugger;
+								text += `<img src="${imgUrl+img}" style="max-width:100%;">&nbsp;`
+							})
+						},
+						fail(){
+							return;
+						}
+					})
+				}).exec()
 				addTalk(text).then((res) => {
 					if (res.code == 200) {
 						this.$refs.uToast.show({

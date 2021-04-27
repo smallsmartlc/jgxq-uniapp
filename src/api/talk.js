@@ -19,10 +19,10 @@ export const getTalkById = (id) => request({
 export const pageTalkList = (params) => request({
     method: 'get',
     url: `/talk/page/user`,
-    params : params,
+    data : params,
 })
 export const addTalk = (text) => request({
     method: 'post',
-    url: `/talk`,
-    params : {text},
+    url: `/talk?text=${text}`,
+    // data : {text},
 })
