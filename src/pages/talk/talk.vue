@@ -81,14 +81,15 @@
 				this.submiting = true;
 				let text = "";
 				// todo 获取编辑器中的html内容
+				let imgs = this.imgList;
 				uni.createSelectorQuery().select('#editor').context((res) => {
 					res.context.getContents({
 						success(res){
 							text = res.html;
-							this.imgList.forEach((img)=>{
+							imgs.forEach((img)=>{
 								// todo 添加图片
-								debugger;
 								text += `<img src="${imgUrl+img}" style="max-width:100%;">&nbsp;`
+								console.log(text)
 							})
 						},
 						fail(){
