@@ -12,8 +12,7 @@
 				</u-upload>
 			</view>
 			<view>
-				<u-button :loading="submitting" @click="submit" type="primary" shape="circle" size="mini">发送
-				</u-button>
+				<u-button :loading="submitting" @click="submit" type="primary" shape="circle" size="mini">发送</u-button>
 			</view>
 		</view>
 		<u-toast ref="uToast" />
@@ -52,14 +51,14 @@
 						if (temp.code == '200') {
 							this.imgList.push(temp.data);
 						} else {
-							this.$refs.uToast.show({
+							this.$emit("toast",{
 								type: "error",
 								title: '图片上传失败',
 							})
 						}
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
+						this.$emit("toast",{
 							type: "error",
 							title: '图片上传失败',
 						})
@@ -73,12 +72,10 @@
 				let text = "";
 				uni.createSelectorQuery().select('#editor').context((res) => {
 					let editorCtx = res.context;
-
 					editorCtx.getContents({
 						success: (res) => {
-							console.log(res);
 							if (this.$utils.isEmpty(res.text.trim()) && this.imgList.length < 1) {
-								this.$refs.uToast.show({
+								this.$emit("toast",{
 									title: '内容不能为空!',
 									type: 'error'
 								});
@@ -102,11 +99,12 @@
 				addTalk(text).then((res) => {
 					if (res.code == 200) {
 						uni.createSelectorQuery().select('#editor').context((res) => {
+							console.log(res);
 							res.context.clear();
 						});
 						this.imgList = [];
 						this.$refs.uUpload.lists = [];
-						this.$refs.uToast.show({
+						this.$emit("toast",{
 							title: '发帖成功!',
 							type: 'success'
 						});
@@ -138,6 +136,8 @@
 <style scoped>
 	#editor {
 		border-bottom: 1px solid #e7e7e7;
+		min-height: 300rpx;
+		height: 300rpx;
 	}
 
 	.button-box {

@@ -44,8 +44,8 @@
 					<view class="devider"></view>
 					<view>评论<text v-if="news">({{news.hit.comments}})</text></view>
 				</view>
-				<view style="border-bottom: 1px solid #e7e7e7;" v-for="item in commentList" :key="item.id">
-					<CommentItem @reply="replyComment(item)" :comment="item"></CommentItem>
+				<view style="border-bottom: 1px solid #e7e7e7;" v-for="(item,index) in commentList" :key="item.id">
+					<CommentItem @toast="showToast" @reply="replyComment(item)" @delete="deleteComment(index)" :comment="item"></CommentItem>
 					<view class="view-more" @click="viewMore(item)" v-if="item.hits.comments">
 						<text>共{{item.hits.comments}}条回复></text>
 					</view>
@@ -223,6 +223,7 @@
 								createAt : new Date(),
 							}
 							this.commentList.unshift(temp);
+							this.total++;
 						}
 					},
 					success: (res) => {
@@ -259,6 +260,16 @@
 						})
 					}
 				})
+			},
+			deleteComment(index){
+				this.$refs.uToast.show({
+					title: '已删除',
+					type: 'success'
+				});
+				this.commentList.splice(index,1);
+			},
+			showToast(data){
+				this.$refs.uToast.show(data);
 			}
 		},
 		onLoad(option) {

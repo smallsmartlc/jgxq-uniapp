@@ -107,6 +107,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/talkDetail/talkDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

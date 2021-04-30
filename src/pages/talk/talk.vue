@@ -1,14 +1,15 @@
 <template>
 	<view>
 		<view class="container">
-			<TalkEditor @success="addTalk(item)"></TalkEditor>
+			<TalkEditor @toast="showToast" @success="addTalk"></TalkEditor>
 		</view>
 		<view>
-			<block v-for="item in talks" :key="item.id">
-				<TalkBox :talk="item"></TalkBox>
+			<block v-for="(item,index) in talks" :key="item.id">
+				<TalkBox @toast="showToast" @delete="deleteTalk(index)" :talk="item"></TalkBox>
 			</block>
 		</view>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
@@ -40,8 +41,9 @@
 			this.tabbar = getApp().globalData.tabbar;
 		},
 		methods: {
-			addTalk(item) {
-
+			addTalk(data) {
+				this.talks.unshift(data);
+				this.total++;
 			},
 			load(){
 				if(this.disabled) return;
@@ -56,6 +58,17 @@
 					}
 					this.loading = false;
 				})
+			},
+			deleteTalk(index){
+				this.talks.splice(index,1);
+				this.$refs.uToast.show({
+					title: '已删除!',
+					type: 'success'
+				});
+			},
+			showToast(data){
+				
+				this.$refs.uToast.show(data);
 			}
 		},
 		computed: {

@@ -9,7 +9,10 @@
 					<view class="user-info">
 						<view class="name">
 							<view style="margin-right: 8rpx;">{{comment.userkey.nickName}}</view>
-							<view v-if="comment.userkey.homeTeam"><u-image width="28" height="28" :src="$utils.url2img(comment.userkey.homeTeam.logo)" mode="aspectFill"></u-image></view>
+							<view v-if="comment.userkey.homeTeam">
+								<u-image width="28" height="28" :src="$utils.url2img(comment.userkey.homeTeam.logo)"
+									mode="aspectFill"></u-image>
+							</view>
 						</view>
 						<view class="time">{{$utils.fromNowStr(comment.createAt)}}</view>
 					</view>
@@ -28,45 +31,42 @@
 			<text>{{comment.content}}</text>
 		</view>
 		<u-action-sheet @click="clickContent" :list="list" v-model="show"></u-action-sheet>
-		<u-toast ref="uToast" />
 	</view>
 </template>
 
 <script>
-	import {thumbById} from '@/api/hit'
+	import {
+		thumbById
+	} from '@/api/hit'
+	import {deleteComment} from '@/api/comment.js'
 	export default {
-		name:"CommentItem",
+		name: "CommentItem",
 		data() {
 			return {
-				list : [{
-					text: '点赞',
-				},{
-					text: '回复',
-				}],
 				show: false,
 			};
 		},
-		props:{
-			comment:Object,
-			reply : {
-				type : Boolean,
-				default : false,
+		props: {
+			comment: Object,
+			reply: {
+				type: Boolean,
+				default: false,
 			}
 		},
-		methods:{
-			thumb(){
-				thumbById(2,this.comment.id).then((res)=>{
-					if(res.code == 200){
-						if(res.data){
-							if(this.reply){
+		methods: {
+			thumb() {
+				thumbById(2, this.comment.id).then((res) => {
+					if (res.code == 200) {
+						if (res.data) {
+							if (this.reply) {
 								this.comment.thumb = true;
 								this.comment.thumbs++;
-							}else{
+							} else {
 								this.comment.hits.thumb = true;
 								this.comment.hits.thumbs++;
 							}
-						}else{
-							this.$refs.uToast.show({
+						} else {
+							this.$emit("toast",{
 								title: '您已经赞过了',
 								type: 'warning'
 							});
@@ -74,47 +74,86 @@
 					}
 				})
 			},
-			replyComment(){
+			replyComment() {
 				this.$emit('reply');
 			},
-			clickContent(index){
-				switch(index){
-					case 0:
+			deleteComment() {
+				deleteComment(this.comment.id).then((res) => {
+					if (res.code == 200) {
+						if (res.data == true) {
+							this.$emit('delete');
+						} else {
+							this.$emit("toast",{
+								title: '删除失败,评论不存在',
+								type: 'warning'
+							});
+						}
+					}
+				})
+			},
+			clickContent(index) {
+				switch (this.list[index].text) {
+					case '点赞':
 						this.thumb();
 						break;
-					case 1:
+					case '回复':
 						this.replyComment();
+						break;
+					case '删除':
+						this.deleteComment();
+						break;
 				}
+			}
+		},
+		computed: {
+			list() {
+				var temp = [{
+					text: '点赞',
+				}, {
+					text: '回复',
+				}];
+				var user = getApp().globalData.userInfo;
+				if (user && this.comment.userkey.userkey === user.userkey) {
+					temp.push({
+						text: '删除'
+					});
+				}
+				return temp;
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	.container{
+	.container {
 		padding: 16rpx;
 	}
-	.info{
+
+	.info {
 		display: flex;
 		justify-content: space-between;
 		height: 80rpx;
 	}
-	.user{
+
+	.user {
 		display: flex;
 		align-items: center;
 	}
-	.user-info{
+
+	.user-info {
 		margin-left: 8rpx;
 		display: flex;
 		flex-direction: column;
 	}
-	.user-info .name{
+
+	.user-info .name {
 		font-size: 14px;
 		color: #fc0;
 		display: flex;
 		align-items: center;
 	}
-	.user-info .time{
+
+	.user-info .time {
 		font-size: 8px;
 		color: #666;
 	}

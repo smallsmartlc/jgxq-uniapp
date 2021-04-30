@@ -1,15 +1,15 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<CommentItem @reply="toAddComment" :comment="comment"></CommentItem>
+			<CommentItem @toast="showToast" @reply="toAddComment" :comment="comment"></CommentItem>
 		</view>
 		<view class="reply-container">
 			<view class="box-header">
 				<view class="devider"></view>
 				<view>评论<text>({{total}})</text></view>
 			</view>
-			<view style="border-bottom: 1px solid #E7E7E7;" v-for="item in replys" :key="item.id">
-				<CommentItem @reply="replyReply(item)" :comment="item" reply></CommentItem>
+			<view style="border-bottom: 1px solid #E7E7E7;" v-for="(item,index) in replys" :key="item.id">
+				<CommentItem @toast="showToast" @delete="deleteReply(index)" @reply="replyReply(item)" :comment="item" reply></CommentItem>
 				<view class="reply" v-if="item.reply">
 					<view class="user-info">
 						<text style="color: #fc0;margin-right: 4rpx;">{{item.reply.userkey.nickName}}</text>
@@ -25,6 +25,7 @@
 		<view class="tabbar">
 			<view class="comment-upper" @click="toAddComment">回复楼主</view>
 		</view>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
@@ -80,6 +81,7 @@
 									createAt : new Date(),
 								}
 								this.replys.unshift(temp);
+								this.total++;
 							}
 						},
 						success: (res) => {
@@ -129,6 +131,16 @@
 							})
 						}
 					})
+				},
+				deleteReply(index){
+					this.$refs.uToast.show({
+						title: '已删除',
+						type: 'success'
+					});
+					this.replys.splice(index,1);
+				},
+				showToast(data){
+					this.$refs.uToast.show(data);
 				}
 			},
 			onLoad(option) {
