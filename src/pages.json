@@ -23,7 +23,8 @@
 		{
 			"path": "pages/talk/talk",
 			"style": {
-				"navigationBarTitleText": "闲聊"
+				"navigationBarTitleText": "闲聊",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

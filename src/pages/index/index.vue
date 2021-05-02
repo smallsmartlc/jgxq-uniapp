@@ -2,7 +2,7 @@
 	<view>
 		<HomeSwiper :news="newsSwiperList"></HomeSwiper>
 		<view class="match-banner">
-			<block v-if="lastMatches.length > 0" v-for="(item,index) in lastMatches">
+			<block v-for="(item,index) in lastMatches" :key="item.id">
 				<block v-if="lastMatches.length > 1">
 					<navigator :url="`../matchDetail/matchDetail?id=${item.id}`">
 						<MatchBox style="height:100%" :match="item"></MatchBox>

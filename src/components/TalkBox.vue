@@ -13,7 +13,9 @@
 				<view class="text">
 					<u-read-more ref="uReadMore" :shadow-style="shadowStyle" close-text="查看全文" show-height="600"
 						color="#fc0" text-indent="0">
-						<u-parse :html="talk.text" :tag-style="style" @load="$refs.uReadMore.init()"></u-parse>
+						<view @click="toTalkDetail()">
+							<u-parse :html="talk.text" :tag-style="style" @load="$refs.uReadMore.init()"></u-parse>
+						</view>
 					</u-read-more>
 				</view>
 				<view class="footer">
@@ -37,11 +39,14 @@
 						<text>{{talk.hit.thumbs}}人觉得很赞</text>
 					</view>
 				</view>
-				<view v-show="commentBox">
+				<view v-show="commentBox" style="margin-bottom: 16rpx;">
 					<u-search shape="square" search-icon="" clearabled action-text="发表" placeholder="评论" v-model="comment"
 						:action-style="searchStyle" @custom="submitComment"></u-search>
 				</view>
-				<view class="comment-list">
+				<view class="comment-list" v-if="comments.length">
+					<view v-for="(item,index) in comments" :key="item.id">
+						<TalkComment @delete="deleteComment(index)" :comment="item"></TalkComment>
+					</view>
 				</view>
 				<view v-if="talk.hit.comments>0 && !noMore" style="padding: 12rpx;">
 					<u-loadmore @loadmore="loadComment" :status="loadingStatus" :load-text="loadText" />
@@ -59,9 +64,11 @@
 		thumbById
 	} from '@/api/hit'
 	import {commentObj} from '@/api/comment'
-	import {pageComment,deleteTalk} from '@/api/talk'
+	import {pageMainComment,deleteTalk} from '@/api/talk'
+	import TalkComment from './TalkComment.vue'
 	export default {
 		name: "TalkBox",
+		components:{TalkComment},
 		data() {
 			return {
 				comment: "",
@@ -146,6 +153,7 @@
 							type: 'success'
 						});
 						this.comments.unshift(temp);
+						this.total++;
 						this.talk.hit.comments++;
 						this.commentBox = false;
 					}
@@ -171,7 +179,7 @@
 				}
 				this.loading = true;
 				this.cur++;
-				pageComment(this.talk.id,this.cur,this.pageSize).then((res)=>{
+				pageMainComment(this.talk.id,this.cur,this.pageSize).then((res)=>{
 					if(res.code == 200){
 					var temp = res.data.records;
 					this.total = res.data.total
@@ -180,7 +188,12 @@
 					this.loading = false;
 				})
 			},
+			deleteComment(index){
+				this.total--;
+				this.comments.splice(index,1);
+			},
 			toTalkDetail(){
+				console.log("事件")
 				uni.navigateTo({
 				    url:`../talkDetail/talkDetail?id=${this.talk.id}`
 				});
@@ -286,6 +299,9 @@
 		line-height: 20px;
 	}
 	.comment-list{
-		background-color: #F2F2F2;
+		background-color: #f7f7f7;
+		padding: 10rpx;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

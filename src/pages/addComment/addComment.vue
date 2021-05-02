@@ -40,6 +40,7 @@
 						this.$refs.uToast.show({
 							title: '评论成功',
 							type: 'success',
+							duration : 500,
 							back : true,
 						});
 					}
@@ -64,7 +65,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.container{
 		padding: 16rpx;
 	}

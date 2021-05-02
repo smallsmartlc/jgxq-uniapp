@@ -70,9 +70,9 @@
 			submit() {
 				this.submiting = true;
 				let text = "";
-				uni.createSelectorQuery().select('#editor').context((res) => {
-					let editorCtx = res.context;
-					editorCtx.getContents({
+				this.createSelectorQuery().select('#editor').context((res) => {
+					this.editorCtx = res.context;
+					this.editorCtx.getContents({
 						success: (res) => {
 							if (this.$utils.isEmpty(res.text.trim()) && this.imgList.length < 1) {
 								this.$emit("toast",{
@@ -98,10 +98,8 @@
 			submitTalk(text) {
 				addTalk(text).then((res) => {
 					if (res.code == 200) {
-						uni.createSelectorQuery().select('#editor').context((res) => {
-							console.log(res);
-							res.context.clear();
-						});
+						// 这里不要套娃就行
+						this.editorCtx.clear();
 						this.imgList = [];
 						this.$refs.uUpload.lists = [];
 						this.$emit("toast",{

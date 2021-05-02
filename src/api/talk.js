@@ -8,6 +8,10 @@ export const pageComment = (objId,cur,pageSize) => request({
     method : 'get',
     url: `/comment/1/${objId}/${cur}/${pageSize}`,
 })
+export const pageMainComment = (objId,cur,pageSize) => request({
+    method : 'get',
+    url: `/comment/main/1/${objId}/${cur}/${pageSize}`,
+})
 export const deleteTalk = (id) => request({
     method : 'delete',
     url: `/talk/${id}`

@@ -7,6 +7,7 @@
 			<block v-for="(item,index) in talks" :key="item.id">
 				<TalkBox @toast="showToast" @delete="deleteTalk(index)" :talk="item"></TalkBox>
 			</block>
+			<u-loadmore :status="loadingStatus" :load-text="loadText" />
 		</view>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 		<u-toast ref="uToast" />
@@ -28,6 +29,11 @@
 				pageSize: 10,
 				cur: 0,
 				talks: [],
+				loadText: {
+					loadmore: '加载更多闲聊',
+					loading: '经管雄起正在加载',
+					nomore: '没有更多了'
+				},
 			}
 		},
 		components: {
@@ -39,6 +45,15 @@
 		onShow() {
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
+		},
+		onReachBottom() {
+			this.load();
+		},
+		onPullDownRefresh() {
+			this.talks = [];
+			this.cur = 0;
+			this.load()
+			uni.stopPullDownRefresh();
 		},
 		methods: {
 			addTalk(data) {

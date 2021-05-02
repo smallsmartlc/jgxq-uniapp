@@ -19,7 +19,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .container{
 	font-size: 12px;
 	width: auto;
