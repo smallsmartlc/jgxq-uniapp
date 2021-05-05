@@ -65,8 +65,17 @@ export function fromNowStr(time){
 		return temp.format('YYYY-MM-DD HH:mm');
 	}
 }
+export function matchTimeFormat(time){
+	var now = moment();
+	var temp =  moment(time);
+	if(now.year() == temp.year()){
+		return temp.format('MM-DD HH:mm');
+	}else{
+		return temp.format('YYYY-MM-DD HH:mm');
+	}
+}
 export function iframe2Text(text){
 	if(text){
-		return text.replace(/<iframe src="\S+"[\s\S]+<\/iframe>/g,"<view style='font-weight: bold; text-align: center;margin: 20rpx;'>小程序不支持b站视频播放,请去网页端观看</view>")
+		return text.replace(/<iframe src="(\S+)"[\s\S]+<\/iframe>/g,"<br><view style='text-align: center;margin: 20rpx 0;'>小程序不支持b站视频播放,<a href='$1' style='color:#fb7299'>点击复制链接</a></view>")
 	}else return "";
 }

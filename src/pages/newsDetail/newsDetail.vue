@@ -345,7 +345,7 @@
 	}
 
 	.news .author {
-		font-size: 8px;
+		font-size: 10px;
 		margin: 20rpx 0;
 		display: flex;
 	}

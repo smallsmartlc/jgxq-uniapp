@@ -1,7 +1,7 @@
 <template>
 	<view v-if="tag" class="container">
 		<u-icon style="margin-right: 4rpx;" size="32" :name="$utils.url2img(tag.logo)"></u-icon>
-		<text>{{tag.name}}</text>
+		<text style="flex-shrink: 0;">{{tag.name}}</text>
 	</view>
 </template>
 

@@ -20,9 +20,11 @@
 					<view style="text-align: left;">{{match.visitingScore}}</view>
 				</view>
 			</view>
-			<view v-if="matchStatus == '进行中' && match.link" class="live">
+			<view class="live" v-if="matchStatus == '进行中' && match.link">
 				<u-icon name="play-right-fill"></u-icon>
-				<text>视频直播中</text>
+				<u-link :href="match.link" font-size="20" color="#fff">
+					<text>视频直播中</text>
+				</u-link>
 			</view>
 			<view v-else class="status" :style="color">{{matchStatus}}</view>
 		</view>
