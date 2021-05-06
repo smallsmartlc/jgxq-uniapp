@@ -2,7 +2,7 @@
 	<view style="background-color: #FbFbFb;">
 		<view v-if="team">
 			<u-tabs-swiper active-color="#fc0" ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
-			<swiper style="height: 1000rpx;" :current="current" 
+			<swiper style="height: calc(100vh - 180rpx);" :current="current" 
 				@animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
 					<TeamDynamic :team="team"></TeamDynamic>

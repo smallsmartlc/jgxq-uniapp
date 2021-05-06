@@ -9,7 +9,7 @@
 			</view>
 		</view>
 		<view class="info">
-			{{player.age}}岁·{{player.number}}号·{{player.nation}}
+			<text v-if="player.age">{{player.age}}岁·</text>{{player.number}}号·{{player.nation}}
 		</view>
 	</view>
 </template>

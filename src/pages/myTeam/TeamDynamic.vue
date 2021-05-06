@@ -1,6 +1,6 @@
 <template>
 	<scroll-view scroll-y style="width: 100%;height: 100%;" @scrolltolower="onreachBottom">
-		<view class="match-banner">
+		<view class="match-banner" v-if="lastMatches.length">
 			<block v-for="(item,index) in lastMatches" :key="item.id">
 				<block v-if="lastMatches.length > 1">
 					<navigator :url="`../matchDetail/matchDetail?id=${item.id}`">

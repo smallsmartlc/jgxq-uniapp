@@ -3,7 +3,7 @@
 		<u-navbar :background="backgroundStyle" immersive back-icon-color="#fff" :border-bottom="false"></u-navbar>
 		<view class="wrap">
 			<view class="header">
-				<u-image class="bg-img" :src="require('../../static/match-bg.jpg')" width="750" height="400"></u-image>
+				<u-image class="bg-img" :src="require('@/static/match-bg.jpg')" width="750" height="400"></u-image>
 				<view v-if="match" class="match-info">
 					<view v-if="match.homeTeam" class="team-box" @click="toTeamDetail(match.homeTeam.id)">
 						<view class="logo">
@@ -47,6 +47,21 @@
 					</view>
 				</view>
 			</view>
+			<view v-if="match">
+				<u-tabs-swiper active-color="#fc0" ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
+				<swiper style="height: calc(100vh - 480rpx);" :current="current"
+					@animationfinish="animationfinish">
+					<swiper-item class="swiper-item">
+						
+					</swiper-item>
+					<swiper-item class="swiper-item">
+						<MatchFormation :info="match.matchInfo"></MatchFormation>
+					</swiper-item>
+					<swiper-item class="swiper-item">
+						ccc
+					</swiper-item>
+				</swiper>
+			</view>
 		</view>
 	</view>
 </template>
@@ -55,13 +70,23 @@
 	import {
 		getMatchById
 	} from '@/api/match'
+	import MatchFormation from './MatchFormation.vue'
 	export default {
+		components:{MatchFormation},
 		data() {
 			return {
 				match: null,
 				backgroundStyle: {
 					background: 'transparent',
-				}
+				},
+				tabs: [{
+					name: '赛况'
+				}, {
+					name: '阵容'
+				}, {
+					name: '资讯'
+				}],
+				current: 0,
 			}
 		},
 		methods: {
@@ -76,6 +101,14 @@
 				uni.navigateTo({
 					url: `../teamDetail/teamDetail?id=${id}`
 				});
+			},
+			animationfinish(e) {
+				let current = e.detail.current;
+				this.$refs.uTabs.setFinishCurrent(current);
+				this.current = current;
+			},
+			change(index) {
+				this.current = index;
 			}
 		},
 		onLoad(option) {
