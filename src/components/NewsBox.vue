@@ -30,7 +30,10 @@
 		},
 		props:{
 			news : Object,
-			top : Boolean,
+			top : {
+				type:Boolean,
+				default:false
+			}
 		},
 	}
 </script>

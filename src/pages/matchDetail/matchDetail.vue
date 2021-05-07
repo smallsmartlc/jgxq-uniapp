@@ -48,11 +48,11 @@
 				</view>
 			</view>
 			<view v-if="match">
-				<u-tabs-swiper active-color="#fc0" ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
+				<u-tabs-swiper class="swiper" active-color="#fc0" ref="uTabs" :list="tabs" :current="current" @change="change"></u-tabs-swiper>
 				<swiper style="height: calc(100vh - 480rpx);" :current="current"
 					@animationfinish="animationfinish">
 					<swiper-item class="swiper-item">
-						
+						<MatchResult :news="matchNews" :action="match.action"></MatchResult>
 					</swiper-item>
 					<swiper-item class="swiper-item">
 						<MatchFormation :info="match.matchInfo"></MatchFormation>
@@ -71,8 +71,9 @@
 		getMatchById
 	} from '@/api/match'
 	import MatchFormation from './MatchFormation.vue'
+	import MatchResult from './MatchResult.vue'
 	export default {
-		components:{MatchFormation},
+		components:{MatchFormation,MatchResult},
 		data() {
 			return {
 				match: null,
@@ -198,5 +199,8 @@
 		justify-content: center;
 		font-size: 28px;
 		margin: 4px 0;
+	}
+	.swiper{
+		box-shadow: 0 2px 3px #f7f7f7;		
 	}
 </style>
