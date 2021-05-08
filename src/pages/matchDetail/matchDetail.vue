@@ -52,7 +52,7 @@
 				<swiper style="height: calc(100vh - 480rpx);" :current="current"
 					@animationfinish="animationfinish">
 					<swiper-item class="swiper-item">
-						<MatchResult :news="matchNews" :action="match.action"></MatchResult>
+						<MatchResult :news="matchNews" :action="match.actions"></MatchResult>
 					</swiper-item>
 					<swiper-item class="swiper-item">
 						<MatchFormation :info="match.matchInfo"></MatchFormation>
@@ -77,6 +77,7 @@
 		data() {
 			return {
 				match: null,
+				matchNews : null,
 				backgroundStyle: {
 					background: 'transparent',
 				},

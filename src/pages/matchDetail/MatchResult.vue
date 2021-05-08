@@ -12,7 +12,22 @@
 		<u-gap height="16" bg-color="#f7f7f7"></u-gap>
 		<view class="actions">
 			<view class="title">事件</view>
-			<view v-if="action"></view>
+			<view class="action-wrap" v-if="action">
+				<view class="content flex-center">
+					<u-icon name="clock" size="40" color="#fc0"></u-icon>
+					<view class="line-wrapper flex-center">
+						<view class="dot"></view>
+						<view class="line"></view>
+						<view v-for="item in action" class="action-item flex-center">
+							<view class="time-box">{{item.time}}</view>
+							<view class="line"></view>
+							<view class="float-wrapper">
+								<view class="action-list"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 			<view class="empty" v-else>
 				<u-empty text="暂无事件" mode="history"></u-empty>
 			</view>
@@ -26,7 +41,7 @@
 		components:{NewsBox},
 		props: {
 			news: Object,
-			action : Object,
+			action : Array,
 		},
 		data(){
 			return {
@@ -48,5 +63,59 @@
 	}
 	.empty{
 		padding: 40rpx 0;
+	}
+	.action-wrap{
+		width: 750rpx;
+		display: flex;
+		justify-content: center;
+		padding: 20rpx;
+	}
+	.flex-center{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.content{
+		width: 40rpx;
+	}
+	.line-wrapper{
+	}
+	.line{
+		height: 100%;
+		min-height: 40rpx;
+		width: 3px;
+		background-color: #fc0;
+	}
+	.dot{
+		min-width: 10px;
+		min-height: 10px;
+		border-radius: 50%;
+		background-color: #fc0;
+	}
+	.action-item{
+		position: relative;
+	}
+	.time-box{
+		font-size: 10px;
+		color: #fff;
+		background-color: #fc0;
+		border-radius: 50%;
+		min-height: 20px;
+		min-width: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.float-wrapper{
+		width: 0;
+		height: 0;
+		position: absolute;
+		top: 0;
+		left : 20px;
+	}
+	.action-list{
+		width: 100px;
+		height: 60px;
+		background-color: #fc0;
 	}
 </style>
