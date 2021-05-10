@@ -65,8 +65,9 @@
 				this.loadNews();
 			},
 			loadNews() {
+				if(this.disabled) return;
 				this.loading = true,
-					this.cur++;
+				this.cur++;
 				pageNewsByTag(this.cur, this.pageSize, this.team.id, 0).then((res) => {
 					if (res.code == 200) {
 						var temp = res.data.records;

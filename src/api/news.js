@@ -24,7 +24,7 @@ export const pageNewsByTag = (cur,pageSize,objectId,type) =>request({
 export const pageNewsByTags = (cur,pageSize,data) =>request({
     method: 'post',
     url: `/news/page/tags/${cur}/${pageSize}`,
-    data
+    data //tagList: [{objectId,type}]
 })
 export const pageComment = (objId,cur,pageSize) => request({
     method : 'get',

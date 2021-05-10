@@ -52,13 +52,13 @@
 				<swiper style="height: calc(100vh - 480rpx);" :current="current"
 					@animationfinish="animationfinish">
 					<swiper-item class="swiper-item">
-						<MatchResult :news="matchNews" :action="match.actions"></MatchResult>
+						<MatchResult :news="match.matchNews" :action="match.actions"></MatchResult>
 					</swiper-item>
 					<swiper-item class="swiper-item">
 						<MatchFormation :info="match.matchInfo"></MatchFormation>
 					</swiper-item>
 					<swiper-item class="swiper-item">
-						ccc
+						<MatchNews :list="newsList" @load="loadNews" :status="loadingStatus"></MatchNews>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -69,11 +69,15 @@
 <script>
 	import {
 		getMatchById
-	} from '@/api/match'
+	} from '@/api/match';
+	import {
+		pageNewsByTags
+	} from '@/api/news'
 	import MatchFormation from './MatchFormation.vue'
 	import MatchResult from './MatchResult.vue'
+	import MatchNews from './MatchNews.vue'
 	export default {
-		components:{MatchFormation,MatchResult},
+		components:{MatchFormation,MatchResult,MatchNews},
 		data() {
 			return {
 				match: null,
@@ -89,6 +93,11 @@
 					name: '资讯'
 				}],
 				current: 0,
+				newsList: [],
+				total: 1,
+				cur: 0,
+				pageSize: 10,
+				loading: false,
 			}
 		},
 		methods: {
@@ -96,6 +105,7 @@
 				getMatchById(id).then((res) => {
 					if (res.code == 200) {
 						this.match = res.data;
+						this.loadNews();
 					}
 				})
 			},
@@ -111,6 +121,21 @@
 			},
 			change(index) {
 				this.current = index;
+			},
+			loadNews(){
+				if(this.disabled) return;
+				if(!this.match) return;
+				this.loading = true,
+				this.cur++;
+				let tagList = [{objectId:this.match.homeTeam.id,type:0},{objectId:this.match.visitingTeam.id,type:0}]
+				pageNewsByTags(this.cur, this.pageSize, {tagList}).then((res) => {
+					if (res.code == 200) {
+						var temp = res.data.records;
+						this.total = res.data.total
+						this.newsList = this.newsList.concat(temp);
+					} else this.cur--;
+				})
+				this.loading = false;
 			}
 		},
 		onLoad(option) {
@@ -120,7 +145,16 @@
 			matchStatus(){
 				if(!this.match) return ""
 				return this.$utils.getMatchStatus(this.match.startTime);
-			}
+			},
+			loadingStatus(){
+				return this.loading?'loading':this.noMore?'nomore':'loadmore';
+			},
+			noMore() {
+				return this.newsList.length >= this.total;
+			},
+			disabled() {
+				return this.loading || this.noMore;
+			},
 		}
 	}
 </script>

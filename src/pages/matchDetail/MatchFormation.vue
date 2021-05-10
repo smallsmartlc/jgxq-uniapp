@@ -71,7 +71,6 @@
 				return newArr;
 			},
 			toPlayerDetail(id){
-				console.log(id);
 				if(!id) return;
 				uni.navigateTo({
 					url: `../playerDetail/playerDetail?id=${id}`
