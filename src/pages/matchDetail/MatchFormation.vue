@@ -7,7 +7,7 @@
 			</view>
 			<view class="lineup-box">
 				<view v-for="(item,index) in homeGroup" v-if="item" :key="'home'+index" class="line">
-					<view class="player_container" v-for="(player,index2) in item" :key="`home${index}-${index2}`" @tap="toPlayerDetail(player.playerId)">
+					<view class="player_container" v-for="(player,index2) in item" :key="`home${index}-${index2}`" :data-id="player.playerId" @click="toPlayerDetail">
 						<view class="player home">{{player.number}}</view>
 						<view class="name">{{player.name}}</view>
 					</view>
@@ -15,7 +15,7 @@
 			</view>
 			<view class="lineup-box">
 				<view v-for="(item,index) in visitingGroup" v-if="item" :key="'home'+index" class="line">
-					<view class="player_container" v-for="(player,index2) in item" :key="`home${index}-${index2}`" @tap="toPlayerDetail(player.playerId)">
+					<view class="player_container" v-for="(player,index2) in item" :key="`home${index}-${index2}`" :data-id="player.playerId" @click="toPlayerDetail">
 						<view class="player visiting">{{player.number}}</view>
 						<view class="name">{{player.name}}</view>
 					</view>
@@ -26,7 +26,7 @@
 		<view style="width:100%;display:flex;">
 		    <view class="col">
 		        <view class="row">主队</view>
-		        <view v-for="(item,index) in info.homeSubstitute" :key="'home_sub'+index" class="row" @tap="toPlayerDetail(item.playerId)">
+		        <view v-for="(item,index) in info.homeSubstitute" :key="'home_sub'+index" class="row" :data-id="item.playerId" @click="toPlayerDetail">
 		            <view class="player home" style="margin-right:10rpx">{{item.number}}</view>
 		            <view>
 						<view>{{item.name}}</view>
@@ -36,7 +36,7 @@
 		    </view>
 		    <view class="col">
 		        <view class="row">客队</view>
-		        <view v-for="(item,index) in info.visitingSubstitute" :key="'visiting_sub'+index" class="row" @tap="toPlayerDetail(item.playerId)">
+		        <view v-for="(item,index) in info.visitingSubstitute" :key="'visiting_sub'+index" class="row" :data-id="item.playerId" @click="toPlayerDetail">
 		            <view class="player visiting" style="margin-right:10rpx">{{item.number}}</view>
 		            <view>
 						<view>{{item.name}}</view>
@@ -70,7 +70,8 @@
 				})
 				return newArr;
 			},
-			toPlayerDetail(id){
+			toPlayerDetail(e){
+				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
 					url: `../playerDetail/playerDetail?id=${id}`

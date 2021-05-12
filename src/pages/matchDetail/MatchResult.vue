@@ -21,7 +21,7 @@
 						<view v-for="item in action" class="action-item">
 							<view v-if="item.infoList.filter((e)=>e.home).length" class="float-wrapper">
 								<view class="action-list float-left">
-									<view v-for="home in item.infoList.filter((e)=>e.home)" class="action-detail align-right" @click="toPlayerDetail(home.playerId)">
+									<view v-for="home in item.infoList.filter((e)=>e.home)" class="action-detail align-right" :data-id="home.playerId" @click="toPlayerDetail">
 										<view class="icon"><u-icon :name="actionType[home.type].icon" :color="actionType[home.type].color" custom-prefix="custom-icon"></u-icon></view>
 										<view class="playerName">{{home.name}}</view>
 									</view>
@@ -33,7 +33,7 @@
 							</view>
 							<view v-if="item.infoList.filter((e)=>!e.home).length" class="float-wrapper">
 								<view class="action-list float-right">
-									<view v-for="visit in item.infoList.filter((e)=>!e.home)" class="action-detail" @click="toPlayerDetail(visit.playerId)">
+									<view v-for="visit in item.infoList.filter((e)=>!e.home)" class="action-detail" :data-id="visit.playerId" @click="toPlayerDetail">
 										<view class="icon"><u-icon :name="actionType[visit.type].icon" :color="actionType[visit.type].color" custom-prefix="custom-icon"></u-icon></view>
 										<view class="playerName">{{visit.name}}</view>
 									</view>
@@ -120,14 +120,15 @@
 			}
 		},
 		methods: {
-			toPlayerDetail(id){
+			toPlayerDetail(e){
+				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
 					url: `../playerDetail/playerDetail?id=${id}`
 				});
 			},
-			toNewsDetail(id){
-				console.log(id);
+			toNewsDetail(e){
+				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
 					url: `../newsDetail/newsDetail?id=${id}`
