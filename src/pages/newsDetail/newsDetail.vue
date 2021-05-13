@@ -14,7 +14,7 @@
 				<u-parse :html="news.text" :tag-style="style"></u-parse>
 				<view class="tags">
 					<navigator v-for="(item,index) in news.tags" :key="index"
-						:url="`../${tagType[item.type]}/${tagType[item.type]}?id=${item.id}`">
+						:url="`../${tagType[item.type]}/${tagType[item.type]}?id=${item.objectId}`">
 						<NewsTag :tag="item"></NewsTag>
 					</navigator>
 				</view>

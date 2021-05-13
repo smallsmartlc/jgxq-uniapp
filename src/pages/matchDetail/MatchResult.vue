@@ -2,7 +2,7 @@
 	<scroll-view scroll-y style="height: 100%;width: 100%;">
 		<view class="match-news">
 			<view class="title">战报</view>
-			<view v-if="news"  @click="toNewsDetail(news.id)">
+			<view v-if="news" :data-id="news.id"  @click="toNewsDetail">
 				<NewsBox :news="news"></NewsBox>
 			</view>
 			<view class="empty" v-else>
