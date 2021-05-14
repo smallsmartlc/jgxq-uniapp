@@ -128,7 +128,7 @@
 				this.loading = true,
 				this.cur++;
 				let tagList = [{objectId:this.match.homeTeam.id,type:0},{objectId:this.match.visitingTeam.id,type:0}]
-				pageNewsByTags(this.cur, this.pageSize, {tagList}).then((res) => {
+				pageNewsByTags(this.cur, this.pageSize, tagList).then((res) => {
 					if (res.code == 200) {
 						var temp = res.data.records;
 						this.total = res.data.total
