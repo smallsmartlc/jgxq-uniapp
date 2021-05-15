@@ -8,7 +8,6 @@
 				<textarea style="min-height: 750rpx;width:720rpx" v-model="content" :placeholder="placeholder" auto-height :maxlength="-1"/>
 			</view>
 		</view>
-		
 		<u-toast ref="uToast"/>
 	</view>
 </template>
