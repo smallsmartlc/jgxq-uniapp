@@ -3,7 +3,7 @@
 		<view v-for="item in playerList" :key="item.id">
 			<view style="background-color:#f7f7f7;padding:5px;color:#666;">{{item.name}}</view>
 			<view v-for="player in item.playerList" :key="player.id">
-				<navigator :url="`../playerDetail/playerDetail?id=${item.id}`">
+				<navigator :url="`../playerDetail/playerDetail?id=${player.id}`">
 					<PlayerItem :player="player"></PlayerItem>
 				</navigator>
 			</view>

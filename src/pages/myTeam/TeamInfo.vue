@@ -1,8 +1,8 @@
 <template>
-	<scroll-view v-if="teamInfo" scroll-y style="height: 100%;width: 100%;">
-		<InfosBox v-if="teamInfo.infos.normal" title = "基本信息" :items = 'teamInfo.infos.normal'></InfosBox>
-		<InfosBox v-if="teamInfo.infos.contact" title = "联系方式" :items = 'teamInfo.infos.contact'></InfosBox>
-		<ChampionBox v-if="teamInfo.infos.champions" title = "荣誉记录" :items = 'teamInfo.infos.champions'></ChampionBox>
+	<scroll-view v-if="team" scroll-y style="height: 100%;width: 100%;">
+		<InfosBox v-if="team.infos.normal" title = "基本信息" :items = 'team.infos.normal'></InfosBox>
+		<InfosBox v-if="team.infos.contact" title = "联系方式" :items = 'team.infos.contact'></InfosBox>
+		<ChampionBox v-if="team.infos.champions" title = "荣誉记录" :items = 'team.infos.champions'></ChampionBox>
 	</scroll-view>
 </template>
 
@@ -19,20 +19,11 @@
 		},
 		data() {
 			return {
-				teamInfo : null,
 			}
 		},
 		mounted() {
-			this.load();
 		},
 		methods: {
-			load(){
-				getTeamById(this.team.id).then((res)=>{
-					if(res.code == 200){
-						this.teamInfo = res.data;
-					}
-				})
-			}
 		},
 	}
 </script>

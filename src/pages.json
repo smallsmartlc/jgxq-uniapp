@@ -67,7 +67,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
             }
             
         }
@@ -114,7 +115,7 @@
             "path" : "pages/talkDetail/talkDetail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "详情",
                 "enablePullDownRefresh": false
             }
             

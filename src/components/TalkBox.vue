@@ -54,7 +54,6 @@
 			</view>
 		</view>
 		<u-gap bg-color="#f7f7f7"></u-gap>
-		<u-toast ref="uToast" />
 		<u-action-sheet @click="clickContent" :list="list" v-model="actionSheet"></u-action-sheet>
 	</view>
 </template>
@@ -166,7 +165,7 @@
 							this.$emit('delete');
 						}else{
 							this.$emit("toast",{
-								message: '删除失败,内容不存在',
+								title: '删除失败,内容不存在',
 								type: 'warning'
 							});
 						}

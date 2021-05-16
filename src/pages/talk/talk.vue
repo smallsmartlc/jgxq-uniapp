@@ -82,7 +82,6 @@
 				});
 			},
 			showToast(data){
-				
 				this.$refs.uToast.show(data);
 			}
 		},

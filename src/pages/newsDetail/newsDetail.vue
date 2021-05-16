@@ -56,6 +56,9 @@
 		<view class="tabbar">
 			<view class="comment-news" @click="toAddComment">发表你的评论</view>
 			<view class="interact">
+				<view @click="comment">
+					<u-icon name="chat" size="48"></u-icon>
+				</view>
 				<view @click="thumb">
 					<u-icon :color="news && news.hit.thumb?'#fc0':'#000'" name="thumb-up" size="48"></u-icon>
 				</view>
