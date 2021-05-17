@@ -103,7 +103,7 @@
 				}
 			},
 			replyComment() {
-				this.$emit('reply');
+				
 			},
 			deleteComment() {
 				deleteComment(this.comment.id).then((res) => {
