@@ -22,7 +22,7 @@
 							<u-icon @click="thumb" :color="talk.hit.thumb?'#fc0':'#000'" name="thumb-up"></u-icon>
 						</view>
 						<view class="button">
-							<u-icon @click="openComment" name="chat"></u-icon>
+							<u-icon @click="toAddComment()" name="chat"></u-icon>
 						</view>
 						<view class="button">
 							<u-icon @click="actionSheet = true" name="more-dot-fill"></u-icon>
@@ -37,6 +37,11 @@
 				<u-icon color="#E6A23C" name="thumb-up-fill"></u-icon>
 				<text>{{talk.hit.thumbs}}人觉得很赞</text>
 			</view>
+		</view>
+		<view class="comment-wrap">
+			<block v-for="(item,index) in comments" :key="item.id">
+				<CommentBox :comment="item" @toast="showToast" @delete="deleteComment(index)"></CommentBox>
+			</block>
 		</view>
 		<view class="tabbar">
 			<view class="comment-talk" @click="toAddComment">发表你的评论</view>
@@ -55,12 +60,13 @@
 </template>
 
 <script>
-	import {pageMainComment,deleteTalk,getTalkById} from '@/api/talk'
-	
+	import {pageComment,deleteTalk,getTalkById} from '@/api/talk'
+	import CommentBox from '@/components/CommentBox.vue'
 	import {
 		thumbById
 	} from '@/api/hit'
 	export default {
+		components:{CommentBox},
 		data() {
 			return {
 				talk : null,
@@ -81,6 +87,7 @@
 				getTalkById(id).then((res)=>{
 					if(res.code == 200){
 						this.talk = res.data;
+						this.loadComment();
 					}
 				})
 			},
@@ -123,7 +130,7 @@
 						if (!this.talk) return;
 						let req = {
 							type: 1,
-							objectId: this.news.id,
+							objectId: this.talk.id,
 						};
 						res.eventChannel.emit("openCommentBox", {
 							data: req,
@@ -198,7 +205,7 @@
 				}
 				this.loading = true;
 				this.cur++;
-				pageMainComment(this.talk.id,this.cur,this.pageSize).then((res)=>{
+				pageComment(this.talk.id,this.cur,this.pageSize).then((res)=>{
 					if(res.code == 200){
 					var temp = res.data.records;
 					this.total = res.data.total
@@ -211,24 +218,19 @@
 				this.total--;
 				this.comments.splice(index,1);
 			},
-			toTalkDetail(){
-				uni.navigateTo({
-					url:`../talkDetail/talkDetail?id=${this.talk.id}`
-				});
-			},
 			clickContent(index) {
 				switch (this.list[index].text) {
 					case '点赞':
 						this.thumb();
-						break;
-					case '详情':
-						this.toTalkDetail();
 						break;
 					case '删除':
 						this.deleteTalk();
 						break;
 				}
 			},
+			showToast(data){
+				this.$refs.uToast.show(data);
+			}
 		},
 		onLoad(option) {
 			this.loadTalk(option.id);

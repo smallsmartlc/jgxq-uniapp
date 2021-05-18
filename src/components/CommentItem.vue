@@ -4,7 +4,7 @@
 			<navigator :url="`../userDetail/userDetail?userkey=${comment.userkey.userkey}`">
 				<view class="user">
 					<view class="headImg">
-						<u-avatar :src="$utils.url2img(comment.userkey.headImage)" size="60"></u-avatar>
+						<u-avatar :src="$utils.url2img(comment.userkey.headImage)" size="80"></u-avatar>
 					</view>
 					<view class="user-info">
 						<view class="name">
