@@ -192,7 +192,6 @@
 				this.comments.splice(index,1);
 			},
 			toTalkDetail(){
-				console.log("事件")
 				uni.navigateTo({
 				    url:`../talkDetail/talkDetail?id=${this.talk.id}`
 				});

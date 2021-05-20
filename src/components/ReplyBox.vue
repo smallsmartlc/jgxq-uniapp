@@ -25,7 +25,7 @@
 							</view>
 							<text>：</text>
 						</block>
-						<text>{{reply.content}}</text>
+						<text @click="show=true">{{reply.content}}</text>
 					</view>
 					<view class="time">{{$utils.fromNowStr(reply.createAt)}}</view>
 				</view>
@@ -35,16 +35,18 @@
 				</view>
 			</view>
 		</view>
+		<u-action-sheet @click="clickContent" :list="list" v-model="show"></u-action-sheet>
 	</view>
 </template>
 
 <script>
-import {thumbById} from '@/api/hit'
+	import {thumbById} from '@/api/hit'
+	import {deleteComment}  from '@/api/comment'
 	export default {
 		name:"ReplyBox",
 		data() {
 			return {
-				
+				show : false,
 			};
 		},
 		props:{
@@ -66,7 +68,87 @@ import {thumbById} from '@/api/hit'
 					}
 				})
 			},
-		}
+			clickContent(index) {
+				switch (this.list[index].text) {
+					case '点赞':
+						this.thumb();
+						break;
+					case '回复':
+						this.replyComment();
+						break;
+					case '删除':
+						this.deleteItem();
+						break;
+				}
+			},
+			deleteItem(){
+				deleteComment(this.reply.id).then((res)=>{
+					if(res.code == 200){
+						if(res.data==true){
+							uni.showToast({
+								title: '已删除',
+							});
+							this.$emit('delete');
+						}
+					}
+				})
+			},
+			replyComment(){
+				uni.navigateTo({
+					url: "../addComment/addComment",
+					events: {
+						successEvent: (data) => {
+							var temp = {
+								...data,
+								reply : this.reply.userkey,
+								userkey : getApp().globalData.userInfo
+							}
+							this.$emit("reply",temp);
+						}
+					},
+					success: (res) => {
+						if (!this.reply) return;
+						var req = {};
+						if(this.reply.reply){
+							req = {
+								type: 1,
+								objectId: this.reply.objectId,
+								parentId: this.reply.parentId,
+								replyId : this.reply.id,
+								target : this.reply.userkey.userkey,
+							}
+						}else{
+							req = {
+								type: 1,
+								objectId: this.reply.objectId,
+								parentId: this.reply.id,
+								target : this.reply.userkey.userkey,
+							}
+						}
+						res.eventChannel.emit("openCommentBox", {
+							data: req,
+							user : this.reply.userkey.nickName
+						})
+					}
+				})
+			},
+		},
+		computed:{
+			list() {
+				var temp = [{
+					text: '点赞',
+				}, {
+					text: '回复',
+				}];
+				var user = getApp().globalData.userInfo;
+				if (user && this.reply.userkey.userkey === user.userkey) {
+					temp.push({
+						text: '删除'
+					});
+				}
+				return temp;
+			}
+		},
 	}
 </script>
 

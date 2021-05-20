@@ -27,7 +27,7 @@
 			</view>
 			<view class="replys">
 				<block v-for="item in replys" :key="item.id">
-					<ReplyBox :reply="item" @toast="(data)=>$emit('toast',data)"></ReplyBox>
+					<ReplyBox :reply="item" @toast="(data)=>$emit('toast',data)" @delete="deleteReply"></ReplyBox>
 				</block>
 			</view>
 			<u-action-sheet @click="clickContent" :list="list" v-model="show"></u-action-sheet>
@@ -103,7 +103,34 @@
 				}
 			},
 			replyComment() {
-				
+				uni.navigateTo({
+					url: "../addComment/addComment",
+					events: {
+						successEvent: (data) => {
+							let temp = {
+								...data,
+								userkey : getApp().globalData.userInfo,
+								thumbs : 0,
+								thumb : false,
+								type : 1,
+								createAt : new Date(),
+							}
+							this.replys.unshift(temp);
+						}
+					},
+					success: (res) => {
+						let req = {
+							type: 1,
+							objectId: this.comment.objectId,
+							parentId: this.comment.id,
+							target : this.comment.userkey.userkey,
+						};
+						res.eventChannel.emit("openCommentBox", {
+							data: req,
+							user: this.comment.userkey.nickName,
+						})
+					}
+				})
 			},
 			deleteComment() {
 				deleteComment(this.comment.id).then((res) => {
