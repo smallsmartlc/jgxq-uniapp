@@ -1,5 +1,6 @@
 <template>
 	<view>
+		
 		<button @click="login">登陆</button>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
@@ -12,6 +13,7 @@
 		data() {
 			return {
 				tabbar: null,
+				user : null,
 			}
 		},
 		onLoad() {
@@ -19,6 +21,7 @@
 		onShow() {
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
+			this.user = getApp().globalData.userInfo;
 		},
 		methods: {
 			login(){
