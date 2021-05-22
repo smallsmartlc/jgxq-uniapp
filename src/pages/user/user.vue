@@ -1,6 +1,14 @@
 <template>
 	<view>
-		
+		<view class="wrap">
+			<view class="user-info">
+				<view v-if="user">
+					
+				</view>
+				<view v-else></view>
+				<u-image class="bg-img" :src="require('@/static/match-bg.jpg')" width="750" height="400"></u-image>
+			</view>
+		</view>
 		<button @click="login">登陆</button>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
@@ -39,6 +47,13 @@
 	}
 </script>
 
-<style>
-
+<style scoped>
+.user-info {
+	width: 750rpx;
+	height: 360rpx;
+}
+.bg-img {
+	position: absolute;
+	z-index: -100;
+}
 </style>
