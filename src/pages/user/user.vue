@@ -4,6 +4,7 @@
 			<view class="user-info">
 				<view v-if="user">
 					
+					
 				</view>
 				<view v-else></view>
 				<u-image class="bg-img" :src="require('@/static/match-bg.jpg')" width="750" height="400"></u-image>
