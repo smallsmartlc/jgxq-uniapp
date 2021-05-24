@@ -5,7 +5,7 @@ export function getUserInfo(){
 }
 export function setUserInfo(user){
 	getApp().globalData.userInfo = user;
-	if(user.homeTeam){
+	if(user && user.homeTeam){
 		setTabbar(user.homeTeam.logo);
 	}else{
 		setTabbar(null);
