@@ -77,7 +77,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
             }
             
         }
@@ -124,10 +125,9 @@
             "path" : "pages/userInfo/userInfo",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "个人资料",
                 "enablePullDownRefresh": false
             }
-            
         }
         ,{
             "path" : "pages/login/login",

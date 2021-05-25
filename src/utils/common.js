@@ -79,3 +79,12 @@ export function iframe2Text(text){
 		return text.replace(/<iframe src="(\S+)"[\s\S]+<\/iframe>/g,"<br><view style='text-align: center;margin: 20rpx 0;'>小程序不支持b站视频播放,<a href='$1' style='color:#fb7299'>点击复制链接</a></view>")
 	}else return "";
 }
+export function prewImage(url){
+	var imgArr = [];
+	imgArr.push(url2img(url));
+	//预览图片
+	uni.previewImage({
+		urls: imgArr,
+		current: imgArr[0]
+	});
+}

@@ -37,9 +37,20 @@ var http = (option) => {
 							// })  
 						}
 						if (error.status === 401) {
-							// 警告弹窗 请先登陆再操作
 							getApp().globalData.userInfo = null;
-							console.log("跳转404界面");
+							// 警告弹窗 请先登陆再操作
+							uni.showModal({
+							    title: '提示',
+							    content: '请先登陆后再操作',
+								success: function(res) {
+									if (res.confirm) {
+										uni.navigateTo({
+											url: "/src/pages/login/login"
+										})
+									}
+								},
+							});
+							
 						}
 						if (error.status === 403) {
 							

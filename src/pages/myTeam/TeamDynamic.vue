@@ -74,8 +74,8 @@
 						this.total = res.data.total
 						this.news = this.news.concat(temp);
 					} else this.cur--;
+					this.loading = false;
 				})
-				this.loading = false;
 			},
 			loadMatch() {
 				pageMatches({

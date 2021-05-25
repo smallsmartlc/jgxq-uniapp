@@ -40,9 +40,5 @@ export const updateUser = (data)=>request({
 })
 export const focusUser = (target,focused)=>request({
     method:"put",
-    url : `/focus`,
-    data : {
-        target,
-        focused
-    }
+    url : `/focus` + `?target=${target}&focused=${focused}`
 })

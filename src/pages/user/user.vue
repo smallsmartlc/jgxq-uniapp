@@ -64,30 +64,27 @@
 				<u-image class="bg-img" :src="require('@/static/match-bg.jpg')" width="750" height="360"></u-image>
 			</view>
 		</view>
-		<view class="list">
-			<navigator :url="`../message/message`">
-				<view class="j-section">
-					<u-icon name="chat" style="margin-right: 12rpx;"></u-icon>
-					<u-section :show-line="false" :bold="false" title="消息" ></u-section>
-				</view>
-			</navigator>
-			<navigator :url="`../collect/collect`">
-				<view class="j-section">
-					<u-icon name="star-fill" style="margin-right: 12rpx;"></u-icon>
-					<u-section :show-line="false" :bold="false" sub-title="" title="我的收藏" ></u-section>
-				</view>
-			</navigator>
+		<view class="grid">
+			<u-grid :col="2">
+				<u-grid-item @click="toMessage">
+					<u-icon name="chat" color="#fc0" :size="46"></u-icon>
+					<view class="grid-text">消息</view>
+				</u-grid-item>
+				<u-grid-item @click="toCollect">
+					<u-icon name="star-fill" color="#fc0" :size="46"></u-icon>
+					<view class="grid-text">我的收藏</view>
+				</u-grid-item>
+			</u-grid>
 		</view>
-		<u-button @click="logout" type="primary" plain ripple>退出登陆</u-button>
 		<u-button @click="login" type="primary" plain ripple>登陆</u-button>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
 </template>
 
 <script>
-	import {userLogin,userLogOut} from '@/api/login'
-	import {setUserInfo} from '@/utils/store.js'
+	import {userLogin} from '@/api/login'
 	import {getUserInfo} from '@/api/user'
+	import {setUserInfo} from '@/utils/store.js'
 	export default {
 		data() {
 			return {
@@ -117,13 +114,6 @@
 					}
 				})
 			},
-			logout(){
-				setUserInfo(null);
-				// #ifdef H5
-				userLogOut();
-				// #endif
-				this.user = getApp().globalData.userInfo;
-			},
 			loadingUser(){
 				getUserInfo().then((res)=>{
 					if(res.code == 200){
@@ -131,6 +121,16 @@
 					}
 				})
 			},
+			toMessage(){
+				uni.navigateTo({
+					url:"../message/message"
+				})
+			},
+			toCollect(){
+				uni.navigateTo({
+					url:"../collect/collect"
+				})
+			}
 		},
 		computed:{
 			regDays(){
@@ -213,14 +213,11 @@
 .button-blue{
 	color: blue;
 }
-.list{
-	margin: 20rpx 0;
+.grid{
+	font-size: 12px;
 }
-.j-section{
-	padding: 24rpx;
-	display: flex;
-	align-items: center;
-	color: #fc0;
-	font-size: 40rpx;
+.grid-item{
+	width: 100%;
+	height: 100%;
 }
 </style>
