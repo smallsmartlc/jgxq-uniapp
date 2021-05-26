@@ -34,6 +34,7 @@
 <script>
 	import {userLogOut} from '@/api/login'
 	import {setUserInfo} from '@/utils/store.js'
+	import {updateUser} from '@/api/user'
 	export default {
 		data() {
 			return {
@@ -44,10 +45,14 @@
 			this.user = getApp().globalData.userInfo;
 		},
 		methods: {
+			
 			logout(){
 				setUserInfo(null);
 				// #ifdef H5
 				userLogOut();
+				// #endif
+				// #ifndef H5
+				uni.removeStorageSync("authCookie")
 				// #endif
 				this.user = getApp().globalData.userInfo;
 				uni.switchTab({

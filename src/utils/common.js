@@ -57,7 +57,7 @@ export function fromNowStr(time){
 	var diff = now.diff(temp,'day');
 	if(now.year() == temp.year()){
 		if((now-temp) > (3*24*3600*1000)){
-			return temp.format('MM-DD HH:mm');
+			return temp.format('M-DD HH:mm');
 		}else{
 			return temp.fromNow();
 		}

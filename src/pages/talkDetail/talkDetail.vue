@@ -87,7 +87,9 @@
 				getTalkById(id).then((res)=>{
 					if(res.code == 200){
 						this.talk = res.data;
-						this.loadComment();
+						if(this.talk){
+							this.loadComment();
+						}
 					}
 				})
 			},
@@ -199,7 +201,7 @@
 					}
 				});
 			},
-			loadComment(){
+			loadComment(id){
 				if(this.disabled){
 					return;
 				}

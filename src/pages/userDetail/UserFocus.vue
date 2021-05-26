@@ -3,6 +3,7 @@
 		<view v-for="item in users" :key="item.userkey">
 			<UserBox @toast="showToast" :user="item"></UserBox>
 		</view>
+		<u-loadmore :status="loadingStatus" :load-text="loadText" />
 		<u-toast ref="uToast" />
 	</scroll-view>
 </template>

@@ -35,17 +35,22 @@ var http = (option) => {
 							// 	type: 'error',
 							// 	duration: messageTime
 							// })  
+							uni.showModal({
+							    title: '提示',
+							    content: error.message || '服务器异常，请联系管理员',
+								showCancel : false
+							});
 						}
 						if (error.status === 401) {
 							getApp().globalData.userInfo = null;
 							// 警告弹窗 请先登陆再操作
 							uni.showModal({
 							    title: '提示',
-							    content: '请先登陆后再操作',
+							    content: '登陆后才能操作呢',
 								success: function(res) {
 									if (res.confirm) {
 										uni.navigateTo({
-											url: "/src/pages/login/login"
+											url: "../login/login"
 										});
 									}
 								},
@@ -53,7 +58,6 @@ var http = (option) => {
 							
 						}
 						if (error.status === 403) {
-							
 							// Message({
 							// 	message: '没有作者权限,去申请成为创作者吧!!!',
 							// 	type: 'warning'

@@ -118,8 +118,7 @@
             {
                 "navigationBarTitleText": "详情",
                 "enablePullDownRefresh": false
-            }
-            
+            } 
         }
         ,{
             "path" : "pages/userInfo/userInfo",
@@ -133,8 +132,9 @@
             "path" : "pages/login/login",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+				"navigationStyle": "custom",
+                "enablePullDownRefresh": false,
+				"backgroundColor" : "#f2f2f2"
             }
             
         }
@@ -151,8 +151,8 @@
             "path" : "pages/message/message",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "消息",
+                "enablePullDownRefresh": true
             }
             
         }
@@ -160,8 +160,8 @@
             "path" : "pages/collect/collect",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "收藏",
+                "enablePullDownRefresh": true
             }
             
         }

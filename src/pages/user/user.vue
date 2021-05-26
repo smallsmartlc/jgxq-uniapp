@@ -76,15 +76,12 @@
 				</u-grid-item>
 			</u-grid>
 		</view>
-		<u-button @click="login" type="primary" plain ripple>登陆</u-button>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
 </template>
 
 <script>
-	import {userLogin} from '@/api/login'
 	import {getUserInfo} from '@/api/user'
-	import {setUserInfo} from '@/utils/store.js'
 	export default {
 		data() {
 			return {
@@ -102,18 +99,6 @@
 			this.user = getApp().globalData.userInfo;
 		},
 		methods: {
-			login(){
-				userLogin({
-					email :"small-smart@qq.com",
-					password : "abc123"
-				}).then((res)=>{
-					if(res.code == 200){
-						var userInfo = res.data;
-						setUserInfo(userInfo);
-						this.user = getApp().globalData.userInfo;
-					}
-				})
-			},
 			loadingUser(){
 				getUserInfo().then((res)=>{
 					if(res.code == 200){
