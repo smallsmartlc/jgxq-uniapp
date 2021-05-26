@@ -46,7 +46,7 @@ var http = (option) => {
 									if (res.confirm) {
 										uni.navigateTo({
 											url: "/src/pages/login/login"
-										})
+										});
 									}
 								},
 							});
