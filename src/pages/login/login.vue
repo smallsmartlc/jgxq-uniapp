@@ -5,13 +5,12 @@
 		</u-navbar>
 		<view class="header">经管雄起</view>
 		<view class="form" v-show="flag">
-			<u-form @submit.native.prevent :model="user" ref="loginForm">
+			<u-form :model="user" ref="loginForm">
 				<u-form-item label="邮箱" prop="email" :label-style="labelStyle">
-					<u-input v-model="user.email" placeholder="请输入电子邮箱" prefix-icon="el-icon-message" clearable />
+					<u-input v-model="user.email" placeholder="请输入电子邮箱" clearable />
 				</u-form-item>
 				<u-form-item label="密码" prop="password" :label-style="labelStyle">
-					<u-input v-model="user.password" placeholder="请输入密码" type="password" prefix-icon="el-icon-lock"
-						clearable />
+					<u-input v-model="user.password" placeholder="请输入密码" type="password" clearable />
 				</u-form-item>
 				<view class="right">
 					<navigator url="../findPassword/findPassword"><text class="link">忘记密码</text></navigator>
@@ -21,13 +20,13 @@
 		<view class="form" v-show="!flag">
 			<u-form :model="user" ref="emailForm">
 				<u-form-item label="邮箱" label-width="120" :label-style="labelStyle" prop="email">
-					<u-input v-model="user.email" placeholder="请输入电子邮箱" prefix-icon="el-icon-message" clearable />
+					<u-input v-model="user.email" placeholder="请输入电子邮箱" clearable />
 					<view slot="right" class="text-btn" @click="sendCode" :class="codeDisabled?'':'disabled'">
 						{{tips}}
 					</view>
 				</u-form-item>
 				<u-form-item label="验证码" label-width="120" :label-style="labelStyle" prop="verificationCode">
-					<u-input v-model="user.verificationCode" placeholder="请输入验证码" prefix-icon="el-icon-key" clearable>
+					<u-input v-model="user.verificationCode" placeholder="请输入验证码" clearable>
 					</u-input>
 				</u-form-item>
 			</u-form>
@@ -99,6 +98,7 @@
 				}
 			},
 			sendCode() {
+				this.$refs.emailInput.$el.children[0].blur();
 				if (this.codeDisabled) return;
 				if(!testEmail(this.user.email)) return;
 				if(this.$refs.uCode.canGetCode) {

@@ -5,7 +5,7 @@
 				<view v-if="user" class="user-wrap">
 					<view class="info">
 						<view class="head-img">
-							<u-avatar style="border: 2px solid #fff;" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>
+							<u-avatar @click="$utils.prewImage(user.headImage)" style="border: 2px solid #fff;" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>
 						</view>
 						<view style="color: #fff;">
 							<navigator :url="`../userInfo/userInfo`">
