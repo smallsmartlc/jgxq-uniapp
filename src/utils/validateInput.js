@@ -35,7 +35,18 @@ export const validateEmail = (rule, value, callback) => {
         }
     }
 };
-
+export const testEmail = (value) => {
+    if (value === '') {
+        return false;
+    } else {
+        const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (!(reg.test(value))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+};
 // 密码验证
 export const validatePass = (rule, value, callback) => {
     if (value === '') {

@@ -165,6 +165,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/findPassword/findPassword",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
