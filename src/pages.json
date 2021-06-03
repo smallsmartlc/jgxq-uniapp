@@ -173,7 +173,14 @@
                 "enablePullDownRefresh": false
             }
             
-        }
+        },
+		{
+			"path": "pages/u-avatar-cropper/u-avatar-cropper",
+			"style": {
+				"navigationBarTitleText": "头像裁剪",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

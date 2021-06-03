@@ -1,8 +1,11 @@
 <template>
 	<scroll-view v-if="team" scroll-y style="height: 100%;width: 100%;">
-		<InfosBox v-if="team.infos.normal" title = "基本信息" :items = 'team.infos.normal'></InfosBox>
-		<InfosBox v-if="team.infos.contact" title = "联系方式" :items = 'team.infos.contact'></InfosBox>
-		<ChampionBox v-if="team.infos.champions" title = "荣誉记录" :items = 'team.infos.champions'></ChampionBox>
+		<block v-if="team.infos">
+			<InfosBox v-if="team.infos.normal" title = "基本信息" :items = 'team.infos.normal'></InfosBox>
+			<InfosBox v-if="team.infos.contact" title = "联系方式" :items = 'team.infos.contact'></InfosBox>
+			<ChampionBox v-if="team.infos.champions" title = "荣誉记录" :items = 'team.infos.champions'></ChampionBox>
+		</block>
+		
 	</scroll-view>
 </template>
 

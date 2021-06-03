@@ -5,7 +5,7 @@
 				<view v-if="user" class="user-wrap">
 					<view class="info">
 						<view class="head-img">
-							<u-avatar class="avatar" @click="$utils.prewImage(user.headImage)" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>/
+							<u-avatar class="avatar" @click="$utils.prewImage(user.headImage)" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>
 						</view>
 						<view style="color: #fff;">
 							<navigator :url="`../userInfo/userInfo`">
@@ -91,15 +91,16 @@
 			}
 		},
 		onLoad() {
-			this.loadingUser();
 		},
 		onShow() {
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
 			this.user = getApp().globalData.userInfo;
+			this.loadingUser();
 		},
 		methods: {
 			loadingUser(){
+				if(!this.user || this.userInfo) return;
 				getUserInfo().then((res)=>{
 					if(res.code == 200){
 						this.userInfo = res.data;

@@ -29,6 +29,7 @@
 </template>
 
 <script>
+	import {getTeamById} from '@/api/team'
 	import TeamDynamic from './TeamDynamic.vue'
 	import TeamMatches from './TeamMatches.vue'
 	import TeamPlayer from './TeamPlayer.vue'
@@ -57,12 +58,17 @@
 				// swiperCurrent : 0,
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			this.tabbar = getApp().globalData.tabbar;
+		},
 		onShow() {
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
 			if (getApp().globalData.userInfo) {
 				this.team = getApp().globalData.userInfo.homeTeam;
+			}
+			if(this.team && !this.team.infos){
+				this.getTeamById(this.team.id);
 			}
 		},
 		methods: {
@@ -80,7 +86,14 @@
 			},
 			change(index) {
 				this.current = index;
-			}
+			},
+			getTeamById(id){
+				getTeamById(id).then((res)=>{
+					if(res.code == 200){
+						this.team = {...this.team, infos : res.data.infos};
+					}
+				})
+			},
 		}
 	}
 </script>
