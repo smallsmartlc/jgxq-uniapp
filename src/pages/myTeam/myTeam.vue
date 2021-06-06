@@ -14,7 +14,7 @@
 					<TeamPlayer :team="team"></TeamPlayer>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<TeamInfo :team="team"></TeamInfo>
+					<TeamInfo :team="computedTeam"></TeamInfo>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -45,6 +45,7 @@
 			return {
 				tabbar: null,
 				team: null,
+				infos : null,
 				tabs: [{
 					name: '动态'
 				}, {
@@ -67,7 +68,7 @@
 			if (getApp().globalData.userInfo) {
 				this.team = getApp().globalData.userInfo.homeTeam;
 			}
-			if(this.team && !this.team.infos){
+			if(this.team && !this.infos){
 				this.getTeamById(this.team.id);
 			}
 		},
@@ -90,10 +91,18 @@
 			getTeamById(id){
 				getTeamById(id).then((res)=>{
 					if(res.code == 200){
-						this.team = {...this.team, infos : res.data.infos};
+						this.infos = res.data.infos;
 					}
 				})
 			},
+		},
+		computed:{
+			computedTeam(){
+				return {
+					...this.team,
+					infos : this.infos,
+				}
+			}
 		}
 	}
 </script>
