@@ -24,10 +24,6 @@ var http = (option) => {
 				if (res.statusCode != 200) {
 					const error = res.data;
 					if (error && !utils.isEmpty(error.status)) {
-						if (error.status === 401) {
-							// 警告弹窗 请先登陆再操作
-							console.log("跳转登陆界面");
-						}
 						// 400,500异常处理，统一提示错误消息
 						if (error.status === 500 || error.status === 400) {
 							// Message({
