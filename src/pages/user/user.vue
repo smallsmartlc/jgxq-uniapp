@@ -49,7 +49,7 @@
 				<view v-else class="button-wrap">
 					<view style="font-size: 16px;color: #fff;">你还没有登录哦，立即登录/注册</view>
 					<view class="buttons">
-						<navigator :url="`../login/login`">
+						<navigator :url="`/pages/login/login`">
 							<view class="u-button button-fc0">
 								<u-icon name="email"></u-icon>
 							</view>

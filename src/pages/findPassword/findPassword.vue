@@ -129,7 +129,7 @@
 									type: 'success'
 								});
 								uni.redirectTo({
-									url:"../login/login"
+									url:"/pages/login/login"
 								})
 							} else {
 								this.$refs.uToast.show({

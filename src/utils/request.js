@@ -46,7 +46,7 @@ var http = (option) => {
 								success: function(res) {
 									if (res.confirm) {
 										uni.navigateTo({
-											url: "../login/login"
+											url: "/pages/login/login"
 										});
 									}
 								},
@@ -66,7 +66,8 @@ var http = (option) => {
 					//设置Cookie
 					// console.log(res);
 					// #ifndef H5
-					let cookie = res.cookies[0];
+					console.log(res);
+					let cookie = res.cookies?res.cookies[0]:null;
 					if(cookie){
 						uni.setStorageSync("authCookie",cookie);
 					}

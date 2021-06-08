@@ -6,7 +6,9 @@
 			<view class="user-wrap" v-if="user">
 				<view style="color: #fff;">
 					<view class="avatar">
-						<u-avatar @click="$utils.prewImage(user.userInfo.headImage)" style="border: 2px solid #fff;" :src="$utils.url2img(user.userInfo.headImage)" size="100"></u-avatar>
+						<view class="head-img">
+							<u-avatar @click="$utils.prewImage(user.userInfo.headImage)" :src="$utils.url2img(user.userInfo.headImage)" size="100"></u-avatar>
+						</view>
 						<view v-if="!isMe">
 							<u-button @click.stop="focusOther" :type="user.focused?'default':'primary'" plain size="mini"
 								:custom-style="buttonStyle">
@@ -117,7 +119,8 @@
 		},
 		computed:{
 			regDays(){
-				return this.$moment().diff(this.user.userInfo.createAt,'day');
+				if(this.user) return this.$moment().diff(this.user.userInfo.createAt,'day');
+				return null;
 			},
 			tabs(){
 				return [{
@@ -152,6 +155,14 @@
 	.bg-img {
 		position: absolute;
 		z-index: -100;
+	}
+	.head-img{
+		margin: 0 20rpx;
+		width: 100rpx;
+		height: 100rpx;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		box-sizing: content-box;
 	}
 	.user-wrap{
 		width: 750rpx;
