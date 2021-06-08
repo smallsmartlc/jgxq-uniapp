@@ -141,7 +141,7 @@
 				};
 				uni.navigateTo({
 					// 关于此路径，请见下方"注意事项"
-					url: `../u-avatar-cropper/u-avatar-cropper${this.$u.queryParams(params)}`,
+					url: `/subPackages/u-avatar-cropper/u-avatar-cropper${this.$u.queryParams(params)}`,
 					// 内部已设置以下默认参数值，可不传这些参数
 				})
 			},
@@ -193,7 +193,7 @@
 			},
 			setTeam() {
 				uni.navigateTo({
-					url: "../teamSet/teamSet"
+					url: "/subPackages/teamSet/teamSet"
 				})
 			},
 		}

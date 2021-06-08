@@ -69,7 +69,7 @@
 				},
 				toAddComment() {
 					uni.navigateTo({
-						url: "../addComment/addComment",
+						url: "/subPackages/addComment/addComment",
 						events: {
 							successEvent: (data) => {
 								let temp = {
@@ -101,7 +101,7 @@
 				},
 				replyReply(item){
 					uni.navigateTo({
-						url: "../addComment/addComment",
+						url: "/subPackages/addComment/addComment",
 						events: {
 							successEvent: (data) => {
 								// 回复对象

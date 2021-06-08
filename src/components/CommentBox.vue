@@ -1,14 +1,14 @@
 <template>
 	<view v-if="comment" class="c-wrap">
 		<view class="avatar">
-			<navigator :url="`../userDetail/userDetail?userkey=${comment.userkey.userkey}`">
+			<navigator :url="`/subPackages/userDetail/userDetail?userkey=${comment.userkey.userkey}`">
 				<u-avatar :src="$utils.url2img(comment.userkey.headImage)" size="64"></u-avatar>
 			</navigator>
 		</view>
 		<view class="content">
 			<view class="main-comment">
 				<view class="user-info">
-					<navigator :url="`../userDetail/userDetail?userkey=${comment.userkey.userkey}`">
+					<navigator :url="`/subPackages/userDetail/userDetail?userkey=${comment.userkey.userkey}`">
 						<view class="name">
 							<view style="margin-right: 8rpx;">{{comment.userkey.nickName}}</view>
 							<view v-if="comment.userkey.homeTeam">
@@ -104,7 +104,7 @@
 			},
 			replyComment() {
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							let temp = {

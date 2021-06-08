@@ -20,25 +20,25 @@
 						</view>
 					</view>
 					<view class="interact" v-if="userInfo">
-						<navigator :url="`../userDetail/userDetail`">
+						<navigator :url="`/subPackages/userDetail/userDetail`">
 							<view class="info-num">
 								<view>{{userInfo.talks}}</view>
 								<view class = "description">发表</view>
 							</view>
 						</navigator>
-						<navigator :url="`../userDetail/userDetail?index=1`">
+						<navigator :url="`/subPackages/userDetail/userDetail?index=1`">
 							<view class="info-num">
 								<view>{{userInfo.comments}}</view>
 								<view class = "description">评论</view>
 							</view>
 						</navigator>
-						<navigator :url="`../userDetail/userDetail?index=2`">
+						<navigator :url="`/subPackages/userDetail/userDetail?index=2`">
 							<view class="info-num">
 								<view>{{userInfo.focus}}</view>
 								<view class = "description">关注</view>
 							</view>
 						</navigator>
-						<navigator :url="`../userDetail/userDetail?index=3`">
+						<navigator :url="`/subPackages/userDetail/userDetail?index=3`">
 							<view class="info-num">
 								<view>{{userInfo.fans}}</view>
 								<view class = "description">粉丝</view>

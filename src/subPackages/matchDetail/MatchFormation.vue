@@ -74,7 +74,7 @@
 				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
-					url: `../playerDetail/playerDetail?id=${id}`
+					url: `/subPackages/playerDetail/playerDetail?id=${id}`
 				});
 			}
 		},

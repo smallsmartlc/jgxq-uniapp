@@ -4,7 +4,7 @@
 			<view class="collect-time">{{item.createTime}}</view>
 			<block v-for="news in item.newslist">
 				<view v-if="news">
-					<navigator :url="`../newsDetail/newsDetail?id=${news.id}`">
+					<navigator :url="`/subPackages/newsDetail/newsDetail?id=${news.id}`">
 						<NewsBox :news="news"></NewsBox>
 					</navigator>
 				</view>

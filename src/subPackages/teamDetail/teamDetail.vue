@@ -40,10 +40,10 @@
 	import {getTeamById} from '@/api/team'
 	import {getTeamMembers} from '@/api/player'
 	import {pageNewsByTag} from '@/api/news'
-	import TeamDynamic from "../myTeam/TeamDynamic.vue"
-	import TeamMatches from '../myTeam/TeamMatches.vue'
-	import TeamPlayer from '../myTeam/TeamPlayer.vue'
-	import TeamInfo from '../myTeam/TeamInfo.vue'
+	import TeamDynamic from "../../pages/myTeam/TeamDynamic.vue"
+	import TeamMatches from '../../pages/myTeam/TeamMatches.vue'
+	import TeamPlayer from '../../pages/myTeam/TeamPlayer.vue'
+	import TeamInfo from '../../pages/myTeam/TeamInfo.vue'
 	export default {
 		components: {
 			TeamDynamic,

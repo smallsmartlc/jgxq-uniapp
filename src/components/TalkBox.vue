@@ -2,7 +2,7 @@
 	<view class="talk-box">
 		<view class="container">
 			<view class="avatar">
-				<navigator :url="`../userDetail/userDetail?userkey=${talk.author.userkey}`">
+				<navigator :url="`/subPackages/userDetail/userDetail?userkey=${talk.author.userkey}`">
 					<u-avatar :src="$utils.url2img(talk.author.headImage)" size="80"></u-avatar>
 				</navigator>
 			</view>
@@ -193,7 +193,7 @@
 			},
 			toTalkDetail(){
 				uni.navigateTo({
-				    url:`../talkDetail/talkDetail?id=${this.talk.id}`
+				    url:`/subPackages/talkDetail/talkDetail?id=${this.talk.id}`
 				});
 			},
 			clickContent(index) {

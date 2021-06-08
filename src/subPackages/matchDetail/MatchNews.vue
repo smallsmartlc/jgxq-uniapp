@@ -1,7 +1,7 @@
 <template>
 	<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="onreachBottom">
 		<view v-if="list.length">
-			<navigator :url="`../newsDetail/newsDetail?id=${item.id}`" v-for="item in list" :key="item.id">
+			<navigator :url="`/subPackages/newsDetail/newsDetail?id=${item.id}`" v-for="item in list" :key="item.id">
 				<NewsBox :news="item"></NewsBox>
 			</navigator>
 			<u-loadmore :status="status" :load-text="loadText" />

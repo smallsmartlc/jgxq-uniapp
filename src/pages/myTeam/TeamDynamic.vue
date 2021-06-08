@@ -3,18 +3,18 @@
 		<view class="match-banner" v-if="lastMatches.length">
 			<block v-for="(item,index) in lastMatches" :key="item.id">
 				<block v-if="lastMatches.length > 1">
-					<navigator :url="`../matchDetail/matchDetail?id=${item.id}`">
+					<navigator :url="`/subPackages/matchDetail/matchDetail?id=${item.id}`">
 						<MatchBox style="height:100%" :match="item"></MatchBox>
 					</navigator>
 					<view class="divider" v-if="index%2==0"></view>
 				</block>
-				<navigator v-else :url="`../matchDetail/matchDetail?id=${item.id}`">
+				<navigator v-else :url="`/subPackages/matchDetail/matchDetail?id=${item.id}`">
 					<MatchBanner :match="item"></MatchBanner>
 				</navigator>
 			</block>
 		</view>
 		<block v-for="item in news" :key="item.id">
-			<navigator :url="`../newsDetail/newsDetail?id=${item.id}`">
+			<navigator :url="`/subPackages/newsDetail/newsDetail?id=${item.id}`">
 				<NewsBox :news="item"></NewsBox>
 			</navigator>
 		</block>

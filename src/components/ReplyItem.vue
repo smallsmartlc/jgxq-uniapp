@@ -44,17 +44,17 @@
 			},
 			toTalkDetail(){
 				uni.navigateTo({
-				    url:`../talkDetail/talkDetail?id=${this.item.objectId}`
+				    url:`/subPackages/talkDetail/talkDetail?id=${this.item.objectId}`
 				});
 			},
 			toUserDetail(userkey){
 				uni.navigateTo({
-				    url:`../userDetail/userDetail?userkey=${userkey}`
+				    url:`/subPackages/userDetail/userDetail?userkey=${userkey}`
 				});
 			},
 			replyComment(){
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							var temp = {

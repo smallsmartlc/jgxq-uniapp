@@ -1,7 +1,7 @@
 <template>
 	<view v-if="comment" class="container">
 		<view class="info">
-			<navigator :url="`../userDetail/userDetail?userkey=${comment.userkey.userkey}`">
+			<navigator :url="`/subPackages/userDetail/userDetail?userkey=${comment.userkey.userkey}`">
 				<view class="user">
 					<view class="headImg">
 						<u-avatar :src="$utils.url2img(comment.userkey.headImage)" size="80"></u-avatar>

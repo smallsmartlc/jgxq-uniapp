@@ -4,7 +4,7 @@
 		<view v-for="list in matchGroup()" :key="list.startTime">
 			<view class="title">{{list.startTime}}</view>
 			<view v-for="item in list.matchlist" :key="item.id">
-				<navigator :url="`../matchDetail/matchDetail?id=${item.id}`">
+				<navigator :url="`/subPackages/matchDetail/matchDetail?id=${item.id}`">
 					<MatchItem :match="item"></MatchItem>
 				</navigator>
 			</view>

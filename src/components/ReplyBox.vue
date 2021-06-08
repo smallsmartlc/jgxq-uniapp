@@ -1,14 +1,14 @@
 <template>
 	<view v-if="reply" class="r-wrap">
 		<view class="avatar">
-			<navigator :url="`../userDetail/userDetail?userkey=${reply.userkey.userkey}`">
+			<navigator :url="`/subPackages/userDetail/userDetail?userkey=${reply.userkey.userkey}`">
 				<u-avatar :src="$utils.url2img(reply.userkey.headImage)" size="64"></u-avatar>
 			</navigator>
 		</view>
 		<view class="content">
 			<view class="main-reply">
 				<view class="user-info">
-					<navigator :url="`../userDetail/userDetail?userkey=${reply.userkey.userkey}`">
+					<navigator :url="`/subPackages/userDetail/userDetail?userkey=${reply.userkey.userkey}`">
 						<view class="name">
 							<view style="margin-right: 8rpx;">{{reply.userkey.nickName}}</view>
 							<view v-if="reply.userkey.homeTeam">
@@ -21,7 +21,7 @@
 						<block v-if="reply.reply">
 							<text>回复</text>
 							<view class="name">
-								<navigator :url="`../userDetail/userDetail?userkey=${reply.reply.userkey}`">{{reply.reply.userkey.nickName}}</navigator>
+								<navigator :url="`/subPackages/userDetail/userDetail?userkey=${reply.reply.userkey}`">{{reply.reply.userkey.nickName}}</navigator>
 							</view>
 							<text>：</text>
 						</block>
@@ -95,7 +95,7 @@
 			},
 			replyComment(){
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							var temp = {

@@ -2,7 +2,7 @@
 	<scroll-view scroll-y style="width: 100%;height: 100%;" @scrolltolower="onreachBottom">
 		<view v-if="news.length">
 			<view v-for="item in news" :key="item.id">
-				<navigator :url="`../newsDetail/newsDetail?id=${item.id}`">
+				<navigator :url="`/subPackages/newsDetail/newsDetail?id=${item.id}`">
 					<NewsBox :news="item"></NewsBox>
 				</navigator>
 			</view>

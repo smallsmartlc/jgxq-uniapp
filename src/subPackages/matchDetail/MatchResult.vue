@@ -124,14 +124,14 @@
 				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
-					url: `../playerDetail/playerDetail?id=${id}`
+					url: `/subPackages/playerDetail/playerDetail?id=${id}`
 				});
 			},
 			toNewsDetail(e){
 				let id = e.currentTarget.dataset.id;
 				if(!id) return;
 				uni.navigateTo({
-					url: `../newsDetail/newsDetail?id=${id}`
+					url: `/subPackages/newsDetail/newsDetail?id=${id}`
 				});
 			}
 		},

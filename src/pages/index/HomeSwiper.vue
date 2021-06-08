@@ -16,7 +16,7 @@
 		methods:{
 			toDetail(index){
 				uni.navigateTo({
-					url:`../newsDetail/newsDetail?id=${this.news[index].id}`
+					url:`/subPackages/newsDetail/newsDetail?id=${this.news[index].id}`
 				})
 			}
 		}

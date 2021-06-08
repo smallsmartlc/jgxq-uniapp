@@ -111,7 +111,7 @@
 			},
 			toTeamDetail(id) {
 				uni.navigateTo({
-					url: `../teamDetail/teamDetail?id=${id}`
+					url: `/subPackages/teamDetail/teamDetail?id=${id}`
 				});
 			},
 			animationfinish(e) {

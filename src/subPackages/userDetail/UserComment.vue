@@ -51,8 +51,8 @@
 					nomore: '没有更多了'
 				},
 				urls: [
-					"../newsDetail/newsDetail?id=",
-					"../talkDetail/talkDetail?id="
+					"/subPackages/newsDetail/newsDetail?id=",
+					"/subPackages/talkDetail/talkDetail?id="
 				]
 			}
 		},

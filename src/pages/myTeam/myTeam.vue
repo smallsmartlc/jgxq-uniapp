@@ -75,7 +75,7 @@
 		methods: {
 			setTeam() {
 				uni.navigateTo({
-					url: "../teamSet/teamSet"
+					url: "/subPackages/teamSet/teamSet"
 				})
 			},
 			// 由于swiper的内部机制问题，快速切换swiper不会触发dx的连续变化，需要在结束时重置状态

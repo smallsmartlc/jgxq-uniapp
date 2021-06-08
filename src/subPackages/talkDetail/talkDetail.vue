@@ -2,7 +2,7 @@
 	<view class="wrap" v-if="talk">
 		<view class="container">
 			<view class="avatar">
-				<navigator :url="`../userDetail/userDetail?userkey=${talk.author.userkey}`">
+				<navigator :url="`/subPackages/userDetail/userDetail?userkey=${talk.author.userkey}`">
 					<u-avatar :src="$utils.url2img(talk.author.headImage)" size="80"></u-avatar>
 				</navigator>
 			</view>
@@ -110,7 +110,7 @@
 			},
 			toAddComment() {
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							let temp = {

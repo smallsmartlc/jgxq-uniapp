@@ -1,5 +1,5 @@
 <template>
-	<navigator :url="`../userDetail/userDetail?userkey=${user.userkey}`">
+	<navigator :url="`/subPackages/userDetail/userDetail?userkey=${user.userkey}`">
 		<view class="wrap">
 			<view class="main">
 				<view class="avatar">

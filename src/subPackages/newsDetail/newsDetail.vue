@@ -4,7 +4,7 @@
 			<view class="news">
 				<view class="title">{{news.title}}</view>
 				<view class="author">
-					<navigator v-if="news.author" :url="`../userDetail/userDetail?userkey=${news.author.userkey}`">
+					<navigator v-if="news.author" :url="`/subPackages/userDetail/userDetail?userkey=${news.author.userkey}`">
 						<text style="color: #fc0;margin-right: 16rpx;">{{news.author.nickName}}</text>
 					</navigator>
 					<text style="color: #666;">{{$utils.fromNowStr(news.createAt)}}</text>
@@ -36,7 +36,9 @@
 					<view>相关文章</view>
 				</view>
 				<view v-for="item in newsList" :key="item.id">
-					<NewsItem :news="item"></NewsItem>
+					<navigator :url="`/subPackages/newsDetail/newsDetail?id=${item.id}`">
+						<NewsItem :news="item"></NewsItem>
+					</navigator>
 				</view>
 			</view>
 			<view class="comment">
@@ -160,7 +162,7 @@
 			},
 			viewMore(items) {
 				uni.navigateTo({
-					url: `../reply/reply`,
+					url: `/subPackages/reply/reply`,
 					events: {
 						// commentDataFromOpenerPage: function(data) {
 						// 	console.log(data)
@@ -211,7 +213,7 @@
 			},
 			toAddComment() {
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							let temp = {
@@ -243,7 +245,7 @@
 			},
 			replyComment(item){
 				uni.navigateTo({
-					url: "../addComment/addComment",
+					url: "/subPackages/addComment/addComment",
 					events: {
 						successEvent: (data) => {
 							item.hits.comments++;
