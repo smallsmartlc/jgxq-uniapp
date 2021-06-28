@@ -5,7 +5,7 @@
 				<view v-if="user" class="user-wrap">
 					<view class="info">
 						<view class="head-img">
-							<u-avatar @click="$utils.prewImage(user.headImage)" style="border: 2px solid #fff;" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>
+							<u-avatar class="avatar" @click="$utils.prewImage(user.headImage)" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>/
 						</view>
 						<view style="color: #fff;">
 							<navigator :url="`../userInfo/userInfo`">
@@ -119,7 +119,9 @@
 		},
 		computed:{
 			regDays(){
-				return this.$moment().diff(this.user.createAt,'day');
+				if(this.user){
+					return this.$moment().diff(this.user.createAt,'day');
+				}
 			}
 		}
 	}
@@ -153,6 +155,11 @@
 }
 .info .head-img{
 	margin: 0 20rpx;
+	width: 100rpx;
+	height: 100rpx;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	box-sizing: content-box;
 }
 .info .time{
 	font-size: 10px;
@@ -204,5 +211,7 @@
 .grid-item{
 	width: 100%;
 	height: 100%;
+}
+.avatar{
 }
 </style>

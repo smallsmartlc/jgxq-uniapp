@@ -74,7 +74,7 @@
 		},
 		methods: {
 			loadingUser(key){
-				getUserInfo({target:key}).then((res)=>{
+				getUserInfo({target:key?key:""}).then((res)=>{
 					if(res.code == 200){
 						this.user = res.data;
 					}

@@ -98,7 +98,6 @@
 				}
 			},
 			sendCode() {
-				this.$refs.emailInput.$el.children[0].blur();
 				if (this.codeDisabled) return;
 				if(!testEmail(this.user.email)) return;
 				if(this.$refs.uCode.canGetCode) {
