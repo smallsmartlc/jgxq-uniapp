@@ -99,20 +99,18 @@
 			// 加载导航栏参数
 			this.tabbar = getApp().globalData.tabbar;
 			this.user = getApp().globalData.userInfo;
-			this.loadingUser();
+			this.loadingUser().then(()=>this.checkMessage());
 		},
 		onPullDownRefresh(){
-			this.loadingUser();
-			this.loadingUser();
+			this.loadingUser().then(()=>this.checkMessage());
 			uni.stopPullDownRefresh();
 		},
 		methods: {
-			loadingUser(){
+			async loadingUser(){
 				if(!this.user || this.userInfo) return;
-				getUserInfo().then((res)=>{
+				await getUserInfo().then((res)=>{
 					if(res.code == 200){
 						this.userInfo = res.data;
-						this.checkMessage();
 					}
 				})
 			},

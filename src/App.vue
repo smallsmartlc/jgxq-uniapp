@@ -1,7 +1,7 @@
 <script>
 	import '.env.js';
 	import {
-		setTabbar,setUserInfo
+		setUserInfo
 	} from '@/utils/store.js'
 	import {checkUser} from '@/api/login'
 	export default {
