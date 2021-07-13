@@ -83,13 +83,10 @@
 			}
 		},
 		methods: {
-			loadTalk(id){
-				getTalkById(id).then((res)=>{
+			async loadTalk(id){
+				await getTalkById(id).then((res)=>{
 					if(res.code == 200){
 						this.talk = res.data;
-						if(this.talk){
-							this.loadComment();
-						}
 					}
 				})
 			},
@@ -235,7 +232,11 @@
 			}
 		},
 		onLoad(option) {
-			this.loadTalk(option.id);
+			this.loadTalk(option.id).then(()=>{
+				if(this.talk){
+					this.loadComment();
+				}
+			});
 		},
 		onShareAppMessage(res) {
 		    return {

@@ -101,11 +101,10 @@
 			}
 		},
 		methods: {
-			getMatchById(id) {
-				getMatchById(id).then((res) => {
+			async getMatchById(id) {
+				await getMatchById(id).then((res) => {
 					if (res.code == 200) {
 						this.match = res.data;
-						this.loadNews();
 					}
 				})
 			},
@@ -139,7 +138,9 @@
 			}
 		},
 		onLoad(option) {
-			this.getMatchById(option.id);
+			this.getMatchById(option.id).then(()=>{
+				this.loadNews();
+			});
 		},
 		onShareAppMessage(res) {
 		    return {

@@ -120,16 +120,14 @@
 			}
 		},
 		methods: {
-			getNewsById(id) {
-				getNewsById(id).then((res) => {
+			async getNewsById(id) {
+				await getNewsById(id).then((res) => {
 					if (res.code == 200) {
 						this.news = res.data;
 						// #ifdef MP
 						this.news.text = this.$utils.iframe2Text(this.news.text);
 						// #endif
 						// this.setShare();
-						this.pageNewsByTags();
-						this.loadingComment();
 					}
 				})
 			},
@@ -278,7 +276,12 @@
 			}
 		},
 		onLoad(option) {
-			this.getNewsById(option.id);
+			this.getNewsById(option.id).then(()=>{
+				if(this.news){
+					this.pageNewsByTags();
+					this.loadingComment();
+				}	
+			});
 		},
 		onReachBottom() {
 			this.loadingComment();
@@ -287,7 +290,12 @@
 			this.newsList = [];
 			this.commentList = [];
 			this.cur = 0;
-			this.getNewsById(this.news.id)
+			this.getNewsById(this.news.id).then(()=>{
+				if(this.news){
+					this.pageNewsByTags();
+					this.loadingComment();
+				}	
+			});
 			uni.stopPullDownRefresh();
 		},
 		onShareAppMessage(res) {
