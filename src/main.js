@@ -3,8 +3,9 @@ import App from './App'
 import uView from "uview-ui";
 import * as utils from '@/utils/common'
 import moment from 'moment'
+import share from '@/utils/share.js'
 
-
+Vue.mixin(share);
 Vue.prototype.$utils = utils;
 Vue.prototype.$moment = moment;
 moment.locale('zh-cn');

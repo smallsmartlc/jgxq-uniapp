@@ -5,7 +5,7 @@
 		</view>
 		<view>
 			<block v-for="(item,index) in talks" :key="item.id">
-				<TalkBox @toast="showToast" @delete="deleteTalk(index)" :talk="item"></TalkBox>
+				<TalkBox @toast="showToast" @delete="deleteTalk(index)" v-model="talks[index]"></TalkBox>
 			</block>
 			<u-loadmore :status="loadingStatus" :load-text="loadText" />
 		</view>

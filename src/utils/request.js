@@ -64,15 +64,25 @@ var http = (option) => {
 					}
 				} else {
 					//设置Cookie
-					// console.log(res);
 					// #ifndef H5
-					console.log(res);
 					let cookie = res.cookies?res.cookies[0]:null;
 					if(cookie){
 						uni.setStorageSync("authCookie",cookie);
 					}
 					// #endif
+					// #ifdef MP-QQ
+					console.log(res)
+					let qqCookie = null;
+					if(res.data){
+						if(res.data.data) {
+							qqCookie = res.data.data.token;	
+						}
+					}
+					if(qqCookie){
+						uni.setStorageSync("authCookie",qqCookie);
+					}
 					
+					// #endif
 					const data = res.data
 					if (data && data.code === '200') {
 						data.code = 200

@@ -113,7 +113,7 @@
 					text: '回复',
 				}];
 				var user = getApp().globalData.userInfo;
-				if (user && this.comment.userkey.userkey === user.userkey) {
+				if (user && this.comment && this.comment.userkey.userkey === user.userkey) {
 					temp.push({
 						text: '删除'
 					});

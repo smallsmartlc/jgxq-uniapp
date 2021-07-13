@@ -237,6 +237,11 @@
 		onLoad(option) {
 			this.loadTalk(option.id);
 		},
+		onShareAppMessage(res) {
+		    return {
+		      path: `/subPackages/talkDetail/talkDetail?id=${this.match.id}`
+		    }
+		},
 		computed: {
 			list() {
 				var temp = [{

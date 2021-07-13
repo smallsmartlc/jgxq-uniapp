@@ -290,6 +290,13 @@
 			this.getNewsById(this.news.id)
 			uni.stopPullDownRefresh();
 		},
+		onShareAppMessage(res) {
+		    return {
+		      title: this.news.title,
+		      path: `/subPackages/newsDetail/newsDetail?id=${this.news.id}`,
+			  imageUrl : this.$utils.url2img(this.news.cover)
+		    }
+		},
 		computed: {
 			noMore() {
 				return this.commentList.length >= this.total

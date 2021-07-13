@@ -17,9 +17,9 @@
 			</view>
 			<view class="content">
 				<text>{{item.text}}</text>
-				<text>
-					<navigator class="link" :url="`${urls[item.objectType]}${item.objectId}`">点击查看</navigator>
-				</text>
+				<navigator class="link" :url="`${urls[item.objectType]}${item.objectId}`">
+					<text>点击查看</text>
+				</navigator>
 			</view>
 		</view>
 		<u-loadmore @loadmore="load()" :status="loadingStatus" :load-text="loadText" />

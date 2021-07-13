@@ -22,7 +22,7 @@
 					<view class="time">{{$utils.fromNowStr(talk.createAt)}}</view>
 					<view class="buttons">
 						<view class="button">
-							<u-icon @click="thumb" :color="talk.hit.thumb?'#fc0':'#000'" name="thumb-up"></u-icon>
+							<u-icon @click="thumb" :color="talk.hit.thumb?'#ffcc00':'#000'" name="thumb-up"></u-icon>
 						</view>
 						<view class="button">
 							<u-icon @click="openComment" name="chat"></u-icon>
@@ -70,6 +70,7 @@
 		components:{TalkComment},
 		data() {
 			return {
+				talk : this.value,
 				comment: "",
 				commentBox: false,
 				comments : [],
@@ -97,7 +98,7 @@
 			}
 		},
 		props: {
-			talk: Object,
+			value: Object,
 		},
 		methods: {
 			thumb() {
@@ -105,6 +106,7 @@
 					if (res.code == 200) {
 						if (res.data) {
 							this.talk.hit.thumb = true;
+							this.$emit('input', this.talk) 
 							this.talk.hit.thumbs++;
 						} else {
 							this.$emit("toast",{

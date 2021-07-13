@@ -141,6 +141,12 @@
 		onLoad(option) {
 			this.getMatchById(option.id);
 		},
+		onShareAppMessage(res) {
+		    return {
+		      title: this.match.title,
+		      path: `/subPackages/matchDetail/matchDetail?id=${this.match.id}`
+		    }
+		},
 		computed:{
 			matchStatus(){
 				if(!this.match) return ""

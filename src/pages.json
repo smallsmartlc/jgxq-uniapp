@@ -30,7 +30,8 @@
 		{
 			"path": "pages/user/user",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": true
 			}
 		}
         ,{
@@ -200,20 +201,28 @@
 	"tabBar": {
 		"list": [
 			{
-				"pagePath":"pages/index/index"
+				"pagePath":"pages/index/index",
+				"text" : ""
 			},
 			{
-				"pagePath":"pages/match/match"
+				"pagePath":"pages/match/match",
+				"text" : ""
 			},
 			{
-				"pagePath":"pages/myTeam/myTeam"
+				"pagePath":"pages/myTeam/myTeam",
+				"text" : ""
 			},
 			{
-				"pagePath":"pages/talk/talk"
+				"pagePath":"pages/talk/talk",
+				"text" : ""
 			},
 			{
-				"pagePath":"pages/user/user"
+				"pagePath":"pages/user/user",
+				"text" : ""
 			}
-		]
+		],
+		"color": "#000000",
+		"selectedColor": "#32CD32",
+		"backgroundColor": "#FFFFFF"
 	}
 }

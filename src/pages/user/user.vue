@@ -67,6 +67,7 @@
 		<view class="grid">
 			<u-grid :col="2">
 				<u-grid-item @click="toMessage">
+					<u-badge v-if="message" is-dot :offset="[20, 20]"></u-badge>
 					<u-icon name="chat" color="#fc0" :size="46"></u-icon>
 					<view class="grid-text">消息</view>
 				</u-grid-item>
@@ -82,12 +83,14 @@
 
 <script>
 	import {getUserInfo} from '@/api/user'
+	import {hasMessage} from '@/api/message'
 	export default {
 		data() {
 			return {
 				tabbar: null,
 				user : null,
 				userInfo : null, // 全局变量，登陆状态
+				message : false,
 			}
 		},
 		onLoad() {
@@ -98,16 +101,31 @@
 			this.user = getApp().globalData.userInfo;
 			this.loadingUser();
 		},
+		onPullDownRefresh(){
+			this.loadingUser();
+			this.loadingUser();
+			uni.stopPullDownRefresh();
+		},
 		methods: {
 			loadingUser(){
 				if(!this.user || this.userInfo) return;
 				getUserInfo().then((res)=>{
 					if(res.code == 200){
 						this.userInfo = res.data;
+						this.checkMessage();
 					}
 				})
 			},
+			checkMessage(){
+				if(!this.user || this.message) return;
+				hasMessage().then((res)=>{
+					if(res.code == 200){
+					  this.message = res.data;
+					}
+			    })
+			},
 			toMessage(){
+				this.message = false;
 				uni.navigateTo({
 					url:"../message/message"
 				})
