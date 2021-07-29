@@ -57,7 +57,7 @@
 				thumbById(2,this.reply.id).then((res)=>{
 					if(res.code == 200){
 						if(res.data){
-							this.reply.thumb = true;
+							this.$emit("update:reply.thumb", true);
 							this.reply.thumbs++;
 						}else{
 							this.$emit("toast",{

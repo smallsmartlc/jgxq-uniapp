@@ -3,7 +3,7 @@
 		<view>
 			<editor id="editor" class="ql-container" placeholder="说点什么吧..."></editor>
 		</view>
-		<view class="button-box">
+		<view class="button-box" style="display: flex; justify-content: space-between;">
 			<view>
 				<u-upload ref="uUpload" :before-upload="beforeUpload" :before-remove="beforeRemove" custom-btn>
 					<view class="button" slot="addBtn">
@@ -139,9 +139,9 @@
 
 	.button-box {
 		display: flex;
+		justify-content: space-between;
 		border-bottom: 1px solid #e7e7e7;
 		align-items: center;
 		padding: 10rpx 20rpx;
-		justify-content: space-between;
 	}
 </style>

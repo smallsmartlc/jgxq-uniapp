@@ -70,7 +70,13 @@
 		}
 	}
 </script>
-
+<style>
+	/*  #ifdef MP-QQ  */
+	.qq-display{
+		display: none;
+	}
+	/*  #endif  */
+</style>
 <style lang="scss">
 	/*每个页面公共css */
 	@import "./static/iconfont.css";

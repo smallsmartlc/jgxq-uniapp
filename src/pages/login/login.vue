@@ -188,6 +188,11 @@
 			this.$refs.loginForm.setRules(this.rules);
 			this.$refs.emailForm.setRules(this.rules);
 		},
+		onLoad() {
+			// #ifdef MP-QQ
+			this.flag = true;
+			// #endif
+		}
 	}
 </script>
 

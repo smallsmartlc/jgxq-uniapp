@@ -63,10 +63,10 @@
 					if (res.code == 200) {
 						if (res.data) {
 							if (this.reply) {
-								this.comment.thumb = true;
+								this.$emit("update:comment.thumb", true);
 								this.comment.thumbs++;
 							} else {
-								this.comment.hits.thumb = true;
+								this.$emit("update:comment.hits.thumb", true);
 								this.comment.hits.thumbs++;
 							}
 						} else {

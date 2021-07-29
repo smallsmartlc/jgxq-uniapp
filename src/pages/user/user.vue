@@ -8,7 +8,7 @@
 							<u-avatar class="avatar" @click="$utils.prewImage(user.headImage)" :src="$utils.url2img(user.headImage)" size="100"></u-avatar>
 						</view>
 						<view style="color: #fff;">
-							<navigator :url="`../userInfo/userInfo`">
+							<navigator :url="`/pages/userInfo/userInfo`">
 								<view class="name">
 									<text>
 										{{user.nickName}}

@@ -41,6 +41,7 @@
 					</navigator>
 				</view>
 			</view>
+			<!-- #ifndef MP-QQ -->
 			<view class="comment">
 				<view class="header">
 					<view class="devider"></view>
@@ -54,7 +55,9 @@
 				</view>
 				<u-loadmore :status="loadingStatus" :load-text="loadText" />
 			</view>
+			<!-- #endif -->
 		</view>
+		<!-- #ifndef MP-QQ -->
 		<view class="tabbar">
 			<view class="comment-news" @click="toAddComment">发表你的评论</view>
 			<view class="interact">
@@ -73,6 +76,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- #endif -->
 		<u-toast ref="uToast" />
 	</view>
 </template>

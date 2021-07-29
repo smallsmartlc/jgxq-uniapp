@@ -11,7 +11,7 @@
 					<view>{{talk.author.nickName}}</view>
 				</view>
 				<view class="text">
-					<view @click="toTalkDetail()">
+					<view>
 						<u-parse :html="talk.text" :tag-style="style"></u-parse>
 					</view>
 				</view>
@@ -21,7 +21,7 @@
 						<view class="button">
 							<u-icon @click="thumb" :color="talk.hit.thumb?'#fc0':'#000'" name="thumb-up"></u-icon>
 						</view>
-						<view class="button">
+						<view class="button qq-display">
 							<u-icon @click="toAddComment()" name="chat"></u-icon>
 						</view>
 						<view class="button">
@@ -249,7 +249,7 @@
 					text: '点赞',
 				}];
 				var user = getApp().globalData.userInfo;
-				if (user && this.talk.author.userkey === user.userkey) {
+				if (user && this.talk && this.talk.author.userkey === user.userkey) {
 					temp.push({
 						text: '删除'
 					});

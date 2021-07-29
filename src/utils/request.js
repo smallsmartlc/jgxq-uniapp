@@ -71,7 +71,6 @@ var http = (option) => {
 					}
 					// #endif
 					// #ifdef MP-QQ
-					console.log(res)
 					let qqCookie = null;
 					if(res.data){
 						if(res.data.data) {
