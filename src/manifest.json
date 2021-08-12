@@ -78,6 +78,9 @@
         "appid" : "1111744384",
 		"optimization" : {
 		    "subPackages" : true
-		}
+		},
+		"navigateToMiniProgramAppIdList" : [
+			"1109937557"
+		]
     }
 }
