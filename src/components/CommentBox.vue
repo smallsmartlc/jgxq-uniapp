@@ -26,8 +26,8 @@
 				</view>
 			</view>
 			<view class="replys">
-				<block v-for="item in replys" :key="item.id">
-					<ReplyBox :reply="item" @toast="(data)=>$emit('toast',data)" @delete="deleteReply"></ReplyBox>
+				<block v-for="(item,index) in replys" :key="item.id">
+					<ReplyBox :reply="item" @toast="(data)=>$emit('toast',data)" @thumb="thumbReply(index)" @delete="deleteReply(index)"></ReplyBox>
 				</block>
 			</view>
 			<u-action-sheet @click="clickContent" :list="list" v-model="show"></u-action-sheet>
@@ -62,13 +62,7 @@
 				thumbById(2, this.comment.id).then((res) => {
 					if (res.code == 200) {
 						if (res.data) {
-							if (this.reply) {
-								this.$emit("update:comment.thumb", true);
-								this.comment.thumbs++;
-							} else {
-								this.$emit("update:comment.hits.thumb", true);
-								this.comment.hits.thumbs++;
-							}
+							this.$emit("thumb");
 						} else {
 							this.$emit("toast",{
 								title: '您已经赞过了',
@@ -146,6 +140,14 @@
 					}
 				})
 			},
+			thumbReply(index){
+				this.replys[index].thumb = true;
+				this.replys[index].thumbs++;
+			},
+			deleteReply(index){
+				this.total--;
+				this.replys.splice(index,1);
+			}
 		},
 		computed:{
 			loadText() {

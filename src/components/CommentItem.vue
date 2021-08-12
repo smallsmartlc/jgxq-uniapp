@@ -58,13 +58,7 @@
 				thumbById(2, this.comment.id).then((res) => {
 					if (res.code == 200) {
 						if (res.data) {
-							if (this.reply) {
-								this.comment.thumb = true;
-								this.comment.thumbs++;
-							} else {
-								this.comment.hits.thumb = true;
-								this.comment.hits.thumbs++;
-							}
+							this.$emit("thumb")
 						} else {
 							this.$emit("toast",{
 								title: '您已经赞过了',

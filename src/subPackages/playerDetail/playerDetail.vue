@@ -20,8 +20,8 @@
 						</view>
 					</view>
 					<view class="info-footer">
-						<view class="box"><text v-if="player.birthday">{{$moment().diff($moment(player.birthday),'year')}}</text>岁</view>
-						<view class="box center">{{player.team.name}}/{{player.number}}号</view>
+						<view class="box"><text v-if="player.birthday">{{$moment().diff($moment(player.birthday),'year')}}岁</text></view>
+						<view class="box center">{{player.team?player.team.name:"自由球员"}}/{{player.number}}号</view>
 						<view class="box">{{player.position}}/{{player.strongFoot}}</view>
 					</view>
 				</view>

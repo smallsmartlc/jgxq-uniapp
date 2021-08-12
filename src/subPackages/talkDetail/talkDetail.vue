@@ -40,7 +40,7 @@
 		</view>
 		<view class="comment-wrap">
 			<block v-for="(item,index) in comments" :key="item.id">
-				<CommentBox :comment="item" @toast="showToast" @delete="deleteComment(index)"></CommentBox>
+				<CommentBox :comment="item" @toast="showToast" @thumb="thumbComment(index)" @delete="deleteComment(index)"></CommentBox>
 			</block>
 		</view>
 		<view class="tabbar">
@@ -216,6 +216,10 @@
 			deleteComment(index){
 				this.total--;
 				this.comments.splice(index,1);
+			},
+			thumbComment(index){
+				this.comments[index].hits.thumb = true;
+				this.comments[index].hits.thumbs++;
 			},
 			clickContent(index) {
 				switch (this.list[index].text) {

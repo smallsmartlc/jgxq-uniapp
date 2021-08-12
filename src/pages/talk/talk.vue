@@ -1,7 +1,9 @@
 <template>
 	<view>
 		<view class="container">
+			<!-- #ifndef MP-QQ -->
 			<TalkEditor @toast="showToast" @success="addTalk"></TalkEditor>
+			<!-- #endif -->
 		</view>
 		<view>
 			<block v-for="(item,index) in talks" :key="item.id">

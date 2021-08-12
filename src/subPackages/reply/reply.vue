@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<CommentItem @toast="showToast" @reply="toAddComment" :comment="comment"></CommentItem>
+			<CommentItem @toast="showToast" @thumb="thumbComment" @reply="toAddComment" :comment="comment"></CommentItem>
 		</view>
 		<view class="reply-container">
 			<view class="box-header">
@@ -9,7 +9,7 @@
 				<view>评论<text>({{total}})</text></view>
 			</view>
 			<view style="border-bottom: 1px solid #E7E7E7;" v-for="(item,index) in replys" :key="item.id">
-				<CommentItem @toast="showToast" @delete="deleteReply(index)" @reply="replyReply(item)" :comment="item" reply></CommentItem>
+				<CommentItem @toast="showToast" @delete="deleteReply(index)" @thumb="thumbReply(index)" @reply="replyReply(item)" :comment="item" reply></CommentItem>
 				<view class="reply" v-if="item.reply">
 					<view class="user-info">
 						<text style="color: #fc0;margin-right: 4rpx;">{{item.reply.userkey.nickName}}</text>
@@ -99,6 +99,10 @@
 						}
 					})
 				},
+				thumbComment(){
+					this.comment.hits.thumb = true;
+					this.comment.hits.thumbs++;
+				},
 				replyReply(item){
 					uni.navigateTo({
 						url: "/subPackages/addComment/addComment",
@@ -138,6 +142,10 @@
 						type: 'success'
 					});
 					this.replys.splice(index,1);
+				},
+				thumbReply(index){
+					this.replys[index].thumb = true;
+					this.replys[index].thumbs++;
 				},
 				showToast(data){
 					this.$refs.uToast.show(data);

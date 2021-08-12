@@ -57,8 +57,7 @@
 				thumbById(2,this.reply.id).then((res)=>{
 					if(res.code == 200){
 						if(res.data){
-							this.$emit("update:reply.thumb", true);
-							this.reply.thumbs++;
+							this.$emit("thumb");
 						}else{
 							this.$emit("toast",{
 								title: '您已经赞过了',
