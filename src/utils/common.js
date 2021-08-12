@@ -77,8 +77,11 @@ export function matchTimeFormat(time){
 export function iframe2Text(text){
 	if(text){
 		// #ifdef MP-QQ
-		return text.replace(/<iframe src="(\S+)"[\s\S]+<\/iframe>/g,"<br><view style='text-align: center;margin: 20rpx 0;'><a href='$1' style='color:#fb7299'>小程序不支持b站视频播放</a></view>")
+		return text.replace(/<iframe src="(\S+)"[\s\S]+<\/iframe>/g,"<br><view style='text-align: center;margin: 20rpx 0;'><text>暂不支持视频播放</text></view>")
 		// #endif
+		return text.replace(/<iframe src="[\s\S]+aid=(\d+)&[\s\S]+"[\s\S]+<\/iframe>/g,(match,capture)=>{
+			return `<a app-id="wx7564fd5313d24844" path='pages/video/video?avid=${capture}' style='color:#fb7299'>点击查看视频</a>`
+		})
 		return text.replace(/<iframe src="(\S+)"[\s\S]+<\/iframe>/g,"<br><view style='text-align: center;margin: 20rpx 0;'>小程序不支持b站视频播放,<a href='$1' style='color:#fb7299'>点击复制链接</a></view>")
 	}else return "";
 }

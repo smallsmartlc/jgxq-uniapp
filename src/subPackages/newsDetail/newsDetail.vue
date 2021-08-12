@@ -11,7 +11,7 @@
 				</view>
 				<!-- <<view v-html="news.text"></view> -->
 				<!-- <myParse  :content="news.text"></myParse> -->
-				<u-parse :html="news.text" :tag-style="style"></u-parse>
+				<u-parse :html="news.text" :tag-style="style" selectable lazy-load></u-parse>
 				<view class="tags">
 					<navigator v-for="(item,index) in news.tags" :key="index"
 						:url="`../${tagType[item.type]}/${tagType[item.type]}?id=${item.objectId}`">
@@ -48,7 +48,7 @@
 					<view>评论<text v-if="news">({{news.hit.comments}})</text></view>
 				</view>
 				<view style="border-bottom: 1px solid #e7e7e7;" v-for="(item,index) in commentList" :key="item.id">
-					<CommentItem @toast="showToast" @reply="replyComment(item)" @delete="deleteComment(index)" :comment="item"></CommentItem>
+					<CommentItem @toast="showToast" @reply="replyComment(item)" @thumb="thumbComment(index)" @delete="deleteComment(index)" :comment="item"></CommentItem>
 					<view class="view-more" @click="viewMore(item)" v-if="item.hits.comments">
 						<text>共{{item.hits.comments}}条回复></text>
 					</view>
@@ -274,6 +274,10 @@
 					type: 'success'
 				});
 				this.commentList.splice(index,1);
+			},
+			thumbComment(index){
+				this.commentList[index].hits.thumb = true;
+				this.commentList[index].hits.thumbs++;
 			},
 			showToast(data){
 				this.$refs.uToast.show(data);
