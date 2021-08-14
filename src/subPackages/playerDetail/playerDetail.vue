@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-navbar :background="backgroundStyle" immersive back-icon-color="#fff" :border-bottom="false"></u-navbar>
+		<u-navbar :custom-back="customBack" :background="backgroundStyle" immersive back-icon-color="#fff" :border-bottom="false"></u-navbar>
 		<view class="wrap">
 			<view class="header">
 				<u-image class="bg-img" :src="require('@/static/match-bg.jpg')" width="750" height="400"></u-image>
@@ -77,7 +77,17 @@
 			},
 			change(index) {
 				this.current = index;
-			}
+			},
+			customBack(){
+				let stackLen = getCurrentPages().length //获取页面栈
+				if(stackLen > 1){
+					uni.navigateBack();
+				}else{
+					uni.reLaunch({
+						url:"/pages/index/index"
+					})
+				}
+			},
 		},
 		onLoad(option) {
 			this.getPlayerById(option.id);
