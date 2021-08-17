@@ -4,6 +4,7 @@
 		setUserInfo
 	} from '@/utils/store.js'
 	import {checkUser} from '@/api/login'
+	import {checkAudit} from '@/api/audit'
 	export default {
 		globalData: {
 			...process.uniEnv,
@@ -45,11 +46,15 @@
 				},
 			],
 			userInfo: null,
+			audit : false,
 		},
 		onLaunch: function() {
 			// app启动时加载
 			// 导航栏
 			this.checkUser();
+			// #ifdef MP-QQ
+			this.checkAudit();
+			// #endif
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -67,6 +72,17 @@
 					}
 				})
 			},
+			checkAudit(){
+				checkAudit().then((res)=>{
+					if (res.code == 200) {
+						if(res.data){
+							getApp().globalData.audit = true;
+						}else {
+							getApp().globalData.audit = false;
+						}
+					}
+				})
+			}
 		}
 	}
 </script>

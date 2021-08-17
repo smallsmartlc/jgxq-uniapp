@@ -24,7 +24,7 @@
 						<view class="button">
 							<u-icon @click="thumb" :color="talk.hit.thumb?'#ffcc00':'#000'" name="thumb-up"></u-icon>
 						</view>
-						<view class="button qq-display">
+						<view class="button" v-if="$utils.audit()">
 							<u-icon @click="openComment" name="chat"></u-icon>
 						</view>
 						<view class="button">

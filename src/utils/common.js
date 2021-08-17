@@ -97,3 +97,12 @@ export function prewImage(url){
 		current: imgArr[0]
 	});
 }
+export function audit(){
+	// #ifdef MP-QQ
+	let audit =  getApp().globalData.audit;
+	if(audit){
+		return false
+	}
+	// #endif
+	return true;
+}

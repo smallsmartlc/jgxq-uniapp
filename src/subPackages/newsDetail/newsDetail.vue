@@ -41,8 +41,7 @@
 					</navigator>
 				</view>
 			</view>
-			<!-- #ifndef MP-QQ -->
-			<view class="comment">
+			<view class="comment" v-if="$utils.audit()">
 				<view class="header">
 					<view class="devider"></view>
 					<view>评论<text v-if="news">({{news.hit.comments}})</text></view>
@@ -55,10 +54,8 @@
 				</view>
 				<u-loadmore :status="loadingStatus" :load-text="loadText" />
 			</view>
-			<!-- #endif -->
 		</view>
-		<!-- #ifndef MP-QQ -->
-		<view class="tabbar">
+		<view class="tabbar" v-if="$utils.audit()">
 			<view class="comment-news" @click="toAddComment">发表你的评论</view>
 			<view class="interact">
 				<view @click="comment">
@@ -76,7 +73,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- #endif -->
 		<u-toast ref="uToast" />
 	</view>
 </template>

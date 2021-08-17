@@ -1,9 +1,7 @@
 <template>
 	<view>
 		<view class="container">
-			<!-- #ifndef MP-QQ -->
-			<TalkEditor @toast="showToast" @success="addTalk"></TalkEditor>
-			<!-- #endif -->
+			<TalkEditor v-if="$utils.audit()" @toast="showToast" @success="addTalk"></TalkEditor>
 		</view>
 		<view>
 			<block v-for="(item,index) in talks" :key="item.id">
