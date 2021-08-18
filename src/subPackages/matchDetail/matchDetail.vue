@@ -27,7 +27,7 @@
 								<view style="text-align: left;">{{match.visitingScore}}</view>
 							</view>
 						</block>
-						<view v-if="match.link" class="link">
+						<view v-if="match.link && $utils.audit()" class="link">
 							<view class="live">
 								<u-icon name="play-right-fill"></u-icon>
 								<u-link :href="match.link" font-size="24" color="#fff">

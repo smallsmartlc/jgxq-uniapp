@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view class="status">
-			<block v-if="match.link">
+			<block v-if="match.link && $utils.audit()">
 				<view v-if="matchStatus=='未开始'">视频直播</view>
 				<view v-else-if="matchStatus == '进行中'" class="button live">
 					<u-icon name="play-right-fill"></u-icon>

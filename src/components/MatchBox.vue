@@ -4,7 +4,7 @@
 			<view class="title-text">{{match.title}}</view>
 			<view class="status-box">
 				<view class="status" :style="color">{{matchStatus}}</view>
-				<view v-if="match.link" class="link">
+				<view v-if="match.link && $utils.audit()" class="link">
 					<u-icon name="video" custom-prefix="custom-icon" size="20"></u-icon>
 					<text>视频</text>
 				</view>
