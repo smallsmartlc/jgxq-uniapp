@@ -82,8 +82,7 @@
 							}
 							text = res.html;
 							this.imgList.forEach((img) => {
-								text +=
-									`<img src="${imgUrl+img}" style="max-width:100%;">&nbsp;`
+								text += `<img src="${imgUrl+img}" style="max-width:100%;"><br>`
 							})
 							this.submitTalk(text);
 						},

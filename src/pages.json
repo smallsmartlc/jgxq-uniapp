@@ -186,7 +186,29 @@
 					}
 					
 				}
-			]
+			    ,{
+                    "path" : "lxsp/lxsp",
+                    "style" :                                                                                    
+					{
+						"navigationBarTitleText": "出入校管理",
+						"enablePullDownRefresh": false,
+						"navigationBarBackgroundColor": "#9185ff",
+						"navigationBarTextStyle" : "white"
+					}
+                
+                }
+                ,{
+                    "path" : "lxsp/lxspDetail",
+                    "style" :                                                                                    
+                {
+                	"navigationBarTitleText": "出入校管理",
+                	"enablePullDownRefresh": false,
+                	"navigationBarBackgroundColor": "#9185ff",
+                	"navigationBarTextStyle" : "white"
+                }
+                
+                }
+            ]
 		}
 	],
 	"globalStyle": {

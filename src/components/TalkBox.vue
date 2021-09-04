@@ -13,7 +13,7 @@
 				<view class="text">
 					<u-read-more ref="uReadMore" :shadow-style="shadowStyle" close-text="查看全文" show-height="600"
 						color="#fc0" text-indent="0">
-						<view @click="toTalkDetail()">
+						<view class="u-content" @click="toTalkDetail()">
 							<u-parse :html="talk.text" :tag-style="style" @load="$refs.uReadMore.init()"></u-parse>
 						</view>
 					</u-read-more>
@@ -271,8 +271,12 @@
 		width: 600rpx;
 	}
 
-	.content .text {}
-
+	.content .text {
+		width: 600rpx;
+	}
+	.u-content{
+		word-wrap:break-word;
+	}
 	.footer {
 		display: flex;
 		justify-content: space-between;

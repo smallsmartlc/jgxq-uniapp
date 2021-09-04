@@ -5,7 +5,10 @@
 		</u-navbar>
 		<view class="main">
 			<view class="container">
-				<textarea style="min-height: 750rpx;width:720rpx" v-model="content" :placeholder="placeholder" auto-height :maxlength="-1"/>
+				<textarea style="min-height: 400rpx;width:720rpx" v-model="content" :placeholder="placeholder" auto-height :maxlength="-1"/>
+			</view>
+			<view class="button-box">
+				<u-button :loading="submitting" @click="doComment" type="primary" shape="circle" size="mini">发表</u-button>
 			</view>
 		</view>
 		<u-toast ref="uToast"/>
@@ -71,5 +74,13 @@
 	}
 	.main{
 		padding-bottom: 80rpx;
+	}
+	.button-box {
+		display: flex;
+		justify-content: space-between;
+		border-top: 1px solid #e7e7e7;
+		border-bottom: 1px solid #e7e7e7;
+		align-items: flex-end;
+		padding: 10rpx 20rpx;
 	}
 </style>

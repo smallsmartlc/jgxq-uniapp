@@ -1,47 +1,49 @@
 <template>
-	<view class="wrap" v-if="talk">
-		<view class="container">
-			<view class="avatar">
-				<navigator :url="`/subPackages/userDetail/userDetail?userkey=${talk.author.userkey}`">
-					<u-avatar :src="$utils.url2img(talk.author.headImage)" size="80"></u-avatar>
-				</navigator>
-			</view>
-			<view class="content">
-				<view class="info">
-					<view>{{talk.author.nickName}}</view>
+	<view>
+		<view class="wrap" v-if="talk">
+			<view class="container">
+				<view class="avatar">
+					<navigator :url="`/subPackages/userDetail/userDetail?userkey=${talk.author.userkey}`">
+						<u-avatar :src="$utils.url2img(talk.author.headImage)" size="80"></u-avatar>
+					</navigator>
 				</view>
-				<view class="text">
-					<view>
-						<u-parse :html="talk.text" :tag-style="style"></u-parse>
+				<view class="content">
+					<view class="info">
+						<view>{{talk.author.nickName}}</view>
 					</view>
-				</view>
-				<view class="footer">
-					<view class="time">{{$utils.fromNowStr(talk.createAt)}}</view>
-					<view class="buttons">
-						<view class="button">
-							<u-icon @click="thumb" :color="talk.hit.thumb?'#fc0':'#000'" name="thumb-up"></u-icon>
-						</view>
-						<view class="button" v-if="$utils.audit()">
-							<u-icon @click="toAddComment()" name="chat"></u-icon>
-						</view>
-						<view class="button">
-							<u-icon @click="actionSheet = true" name="more-dot-fill"></u-icon>
+					<view class="text">
+						<view class="u-content">
+							<u-parse :html="talk.text" :tag-style="style"></u-parse>
 						</view>
 					</view>
+					<view class="footer">
+						<view class="time">{{$utils.fromNowStr(talk.createAt)}}</view>
+						<view class="buttons">
+							<view class="button">
+								<u-icon @click="thumb" :color="talk.hit.thumb?'#fc0':'#000'" name="thumb-up"></u-icon>
+							</view>
+							<view class="button" v-if="$utils.audit()">
+								<u-icon @click="toAddComment()" name="chat"></u-icon>
+							</view>
+							<view class="button">
+								<u-icon @click="actionSheet = true" name="more-dot-fill"></u-icon>
+							</view>
+						</view>
+					</view>
 				</view>
 			</view>
-		</view>
-		<u-line margin="20rpx 0"></u-line>
-		<view class="talk-hit">
-			<view v-if="talk.hit.thumbs">
-				<u-icon color="#E6A23C" name="thumb-up-fill"></u-icon>
-				<text>{{talk.hit.thumbs}}人觉得很赞</text>
+			<u-line margin="20rpx 0"></u-line>
+			<view class="talk-hit">
+				<view v-if="talk.hit.thumbs">
+					<u-icon color="#E6A23C" name="thumb-up-fill"></u-icon>
+					<text>{{talk.hit.thumbs}}人觉得很赞</text>
+				</view>
 			</view>
-		</view>
-		<view class="comment-wrap">
-			<block v-for="(item,index) in comments" :key="item.id">
-				<CommentBox :comment="item" @toast="showToast" @thumb="thumbComment(index)" @delete="deleteComment(index)"></CommentBox>
-			</block>
+			<view class="comment-wrap">
+				<block v-for="(item,index) in comments" :key="item.id">
+					<CommentBox :comment="item" @toast="showToast" @thumb="thumbComment(index)" @delete="deleteComment(index)"></CommentBox>
+				</block>
+			</view>
 		</view>
 		<view class="tabbar">
 			<view class="comment-talk" @click="toAddComment">发表你的评论</view>
@@ -72,7 +74,7 @@
 				talk : null,
 				style: {
 					// 字符串的形式
-					img: 'width:480rpx',
+					img: 'width:480rpx;min-height:240rpx',
 				},
 				actionSheet : false,
 				comments : [],
@@ -300,7 +302,9 @@
 		width: 600rpx;
 	}
 	
-	.content .text {}
+	.content .text {
+		width: 600rpx;
+	}
 	
 	.footer {
 		display: flex;
@@ -325,6 +329,9 @@
 	.talk-hit {
 		font-size: 10px;
 		line-height: 20px;
+	}
+	.u-content{
+		word-wrap:break-word;
 	}
 	.tabbar {
 		height: 80rpx;

@@ -77,6 +77,16 @@
 				</u-grid-item>
 			</u-grid>
 		</view>
+		<view class="features" v-if="user">
+			<u-section title="特色功能" :right="false" line-color="#fc0"></u-section>
+			<u-gap height="20"></u-gap>
+			<u-grid :col="4" :border="false">
+				<u-grid-item v-for="(item,index) in features" :key="index"  @click="toFeature(index)">
+					<u-icon :name="item.icon" :size="64"></u-icon>
+					<view class="grid-text">{{item.text}}</view>
+				</u-grid-item>
+			</u-grid>
+		</view>
 		<u-tabbar active-color="#fc0" :list="tabbar" :mid-button="true"></u-tabbar>
 	</view>
 </template>
@@ -91,6 +101,11 @@
 				user : null,
 				userInfo : null, // 全局变量，登陆状态
 				message : false,
+				features:[{
+					icon : "https://smallsmart.top/source/images/jgxq/icon/lxsp/lxsp.png",
+					text : "出入校",
+					url : "/subPackages/lxsp/lxsp"
+				}]
 			}
 		},
 		onLoad() {
@@ -131,6 +146,12 @@
 			toCollect(){
 				uni.navigateTo({
 					url:"../collect/collect"
+				})
+			},
+			toFeature(index){
+				let feature = this.features[index]
+				uni.navigateTo({
+					url: feature.url
 				})
 			}
 		},
@@ -230,5 +251,8 @@
 	height: 100%;
 }
 .avatar{
+}
+.features{
+	padding: 16rpx;
 }
 </style>
