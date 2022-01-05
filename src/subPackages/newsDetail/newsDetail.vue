@@ -103,7 +103,8 @@
 					// 字符串的形式
 					video: 'width:700rpx;height : 350rpx',
 					p: 'font-size: 14px;line-height:22px',
-					iframe: 'width:700rpx;height : 350rpx'
+					iframe: 'width:700rpx;height : 350rpx',
+					img: 'min-height:240rpx',
 				},
 				tagType: ["teamDetail", "playerDetail"],
 				newsList: [],
